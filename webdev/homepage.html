@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styling.css">
+    <title>Home Page</title>
+    
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <p class="p1">Valorant Datahub</p>
+            <p class="p2">Guest mode</p>
+        </nav>
+    </header>
+    <div class="image_and_login">
+        <h1 style="margin-top: 150px; padding: 20px;color: white;">Welcome to Valorant Datahub<br>Track your in-game stats today</h1>
+            
+        <div class="buttons">
+            <button class="login_button">Login</button>
+            <button class="register_button">Sign up</button>
+        </div>
+        <img src="Images/valo.jpg" alt="Couldn't load image">
+    </div>
+    
+    <div class="options_boxes">
+        <button class="agents" onclick="OpenAgents()">View agents</button>
+        <button class="maps">View maps</button>
+        <button class="weapons">View weapons</button>
+        <button class="leaderboards" onclick="OpenLeaderboards()">View leaderboards</button>
+        <button class="stats">View stats</button>
+    </div>
+</body>
+<script>
+    function OpenAgents(){
+        window.location.href= "agents.html";
+    }
+    function OpenLeaderboards(){
+        window.location.href = "leaderboards.html";
+    }
+</script>
+</html>

@@ -1,0 +1,72 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    /* Items will be spaced evenly */
+    background-color: #990000;
+    color: #f2f2f2;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+.navbar .p2{
+    margin-right: 30px;
+}
+body{
+    background-color: black;
+}
+.buttons {
+    margin-top: 320px;
+    margin-left: -370px;
+}
+
+.buttons .register_button {
+    margin-left: 30px;
+}
+
+.login_button, .register_button {
+    margin-top: -12px;
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #990000;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+}
+
+.login_button:hover, .register_button:hover, .options_boxes button:hover  {
+    background-color: #FF6666;
+}
+.options_boxes{
+    margin-left: 80px;
+    margin-top: 100px;
+}
+.options_boxes button{
+    width: 250px;
+    height: 150px;
+    margin: 10px;
+    font-size: 18px;
+    background-color: #990000;
+    color: white;
+    border-radius: 15px;
+}
+.image_and_login{
+    display: flex;
+    align-items: center;
+}
+
+    
+.image_and_login img{
+    height: auto;
+    width: 56%;
+    margin-left: 350px;
+    margin-top: 130px;
+    border-style: none;
+}

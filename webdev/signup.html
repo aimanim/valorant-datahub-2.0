@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/countries-list@2.11.0/dist/countries.min.js"></script>
+
+    <link rel="stylesheet" href="signup.css">
+    <title>Sign up </title>
+</head>
+
+<body>
+
+    <div class="body-content">
+
+        <div class="container">
+
+            <h2>Sign Up</h2>
+            <div class="login-form">
+                <form action="">
+                    <div class="form-item">
+                        <input type="text" name="userName" id="userName" placeholder="First Name">
+                        <input type="text" name="userName" id="userName" placeholder="Last Name">
+                    </div>
+                    <div class="form-item-userid">
+                        <input type="text" name="userid" id="userid" placeholder="Username">
+                    </div>
+                    <div class="form-item-items">
+                        <select id="gender" name="gender">
+                            <option value="" disabled selected hidden>Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <input type="text" id="dob" name="dob" placeholder="Date of birth" onfocus="(this.type='date')"
+                            onblur="(this.type='text')">
+                    </div>
+                    <div class="form-item-location">
+                        <input type="text" id="country" name="country" placeholder="Country">
+                        <input type="text" id="city" name="city" placeholder="City">
+                    </div>
+                    <div class="fav-agent">
+                        <select id="agents" name="agents">
+                          <option value="" disabled selected hidden>Favorite agent</option>
+                          <option value="Jett">Jett</option>
+                          <option value="Phoenix">Phoenix</option>
+                          <option value="Reyna">Reyna</option>
+                          <option value="Raze">Raze</option>
+                          <option value="Neon">Neon</option>
+                          <option value="Yoru">Yoru</option>
+                          <option value="Brimstone">Brimstone</option>
+                          <option value="Viper">Viper</option>
+                          <option value="Omen">Omen</option>
+                          <option value="Astra">Astra</option>
+                          <option value="Harbor">Harbor</option>
+                          <option value="Sova">Sova</option>
+                          <option value="Breach">Breach</option>
+                          <option value="Skye">Skye</option>
+                          <option value="KAY/O">KAY/O</option>
+                          <option value="Fade">Fade</option>
+                          <option value="Geko">Geko</option>
+                          <option value="Killjoy">Killjoy</option>
+                          <option value="Cypher">Cypher</option>
+                          <option value="Sage">Sage</option>
+                          <option value="Chamber">Chamber</option>
+                          <option value="Deadlock">Deadlock</option>
+                          <option value="Clove">Clove</option>
+                        </select>
+                      </div>
+                      
+                    <div class="form-item-password">
+                        <input type="password" name="passWord" id="password" placeholder="Password">
+                        <input type="password" name="passWord" id="confirmPassword" placeholder="Confirm Password">
+                    </div>
+
+                    <div class="remember-box">
+                        <input type="checkbox" name="remember" id="remember">
+                        <p>I accept the Terms of Use & Privacy Policy</p>
+                    </div>
+                    <div class="form-btns">
+                        <button class="signup" type="submit">Sign Up</button>
+                        <div class="options">
+                            Already have an account? <a href="#">Login here</a>
+                        </div>
+                    </div>
+                </form>
+                <p>Copyright &copy; ValorantDatahub.com</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
