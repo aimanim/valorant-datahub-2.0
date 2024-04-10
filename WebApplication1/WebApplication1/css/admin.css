@@ -1,0 +1,68 @@
+.navbar {
+    background-color: #990000;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 8px;
+    color: white;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar p {
+    margin: 15px 20px;
+}
+
+.items {
+    background-color: #990000;
+    width: 1100px;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.items ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.items li,
+.items li a {
+    list-style: none;
+    text-decoration: none;
+    color: white;
+}
+
+.items li select {
+    background-color: black;
+    color: white;
+    padding: 5px;
+    margin-top: -5px;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 500px;
+    width: 900px;
+    background-color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.updates{
+    background-color: blue;
+    margin-left: 10px;
+    width: 400px;
+}
+.insights{
+    background-color: green;
+    margin-right: 10px;
+    width: 400px;
+}
