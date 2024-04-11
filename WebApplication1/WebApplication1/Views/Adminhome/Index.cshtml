@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@model List<soloMatches>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -93,6 +97,13 @@
         </div>
         <div class="insights">
             <h1>Insights</h1>
+            @{
+                foreach(var record in Model)
+                {
+                    <p>@record.Agent_Played</p>
+                }
+            }
+            
         </div>
     </div>
     <script>

@@ -12,7 +12,8 @@ namespace WebApplication1.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var objMatches = _db.solomatches.ToList();
+            return View(objMatches);
         }
     }
 }
