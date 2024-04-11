@@ -1,4 +1,7 @@
 ﻿@model List<Leaderboards>
+@{
+    Layout = null;
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +16,7 @@
         }
 
         .MyTable {
+            margin: 0 auto;
             width: 1300px;
             margin-top: 50px;
             border: 1px solid gray;
@@ -27,7 +31,7 @@
             background: rgb(43, 46, 46);
             background: linear-gradient(77deg, rgba(43, 46, 46, 1) 0%, rgba(40, 38, 37, 1) 100%);
             width: 95%;
-            margin: 20px;
+            margin: 10px auto;
         }
 
             .custom-table th,
@@ -76,7 +80,7 @@
 </head>
 
 <body>
-
+    @Html.Partial("/Views/shared/homepage_nav.cshtml")
     <div class="positions">
         <div class="position2">
             position2
@@ -108,7 +112,7 @@
 
                 int i = 0;
                 }
-                @foreach(var record in Model)
+                @foreach(var record in Model.OrderByDescending(u=>u.MMR))
 
                 {
                     <tr>
@@ -128,6 +132,11 @@
             </tbody>
         </table>
     </div>
+    <script>
+        function GotoHome() {
+            window.location.href = "Homepage/Index";
+        }
+    </script>
 </body>
 
 </html>

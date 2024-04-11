@@ -7,17 +7,23 @@ namespace WebApplication1.Models
     {
         [Key]
         public string agent_name { get; set; }
-
+        [Required]
         public float pick_pct { get; set; }
+        [Required]
         public float win_pct { get; set; }
+        [Required]
         public string tier { get; set; }
+        [Required]
         public string role { get; set; }
 
-        [ForeignKey("Weapon")] // Assuming a table named "Weapon" with an "id" column
-        public string? suited_weapon { get; set; }  // Nullable string
-
+        [ForeignKey("Weapon")] 
+        public string? suited_weapon { get; set; }  
+        public virtual Weapons Weapon { get; set; }
+        [Required]
         public string ultimate { get; set; }
+        [Required]
         public string description { get; set; }
+        [Required]
         public string voiced_by { get; set; }
     }
 }

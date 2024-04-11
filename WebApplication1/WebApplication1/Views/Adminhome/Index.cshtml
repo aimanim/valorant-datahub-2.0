@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <p>Valorant Datahub</p>
+            <div class="items">
+                <ul>
+                    <li><a href="admin.html">Home</a></li>
+                    <li><a href="tableDisplay.html?table=Agents">Agents</a></li>
+                    <li><a href="tableDisplay.html?table=Maps">Maps</a></li>
+                    <li><a href="#">Weapons</a></li>
+                    <li><a href="#">Users</a></li>
+                    <li><a href="#">Locations</a></li>
+                    <li><a href="#">Teams</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Matches</a>
+                        <div class="dropdown-content">
+                            <a href="#">Solo Matches</a>
+                            <a href="#">Team Matches</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Admin</a>
+                        <div class="dropdown-content">
+                            <a href="#">Home</a>
+                            <a href="#">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="updates">
+            <h1>Latest Valorant News</h1>
+            <div class="news-items">
+                <div class="item">
+                    <a href="https://valorantesports.com/news/masters-shanghai-venue-and-ticket-announcement/" target="_blank">
+                        <img id="item-img" src="/Images/news-item1-image.jpg" alt="News1 Image">
+                    </a>
+
+                    <div class="item-text">
+                        <p>08/04/2024</p>
+                        <p>Master Shengai Venue and Ticket Announcement</p>
+                        <p>The second master will take place May 23- June 9</p>
+                        <a href="https://valorantesports.com/news/masters-shanghai-venue-and-ticket-announcement/" target="_blank">See article</a>
+                    </div>
+
+                </div>
+                <div class="item">
+                    <a href="https://playvalorant.com/en-us/news/game-updates/valorant-patch-notes-8-05/" target="_blank">
+                        <img id="item-img" src="/Images/news-item2-image.jpg" alt="News2 Image">
+                    </a>
+                    <div class="item-text">
+                        <p>05/04/2024</p>
+                        <p>Valorant Patch notes 8.05</p>
+                        <p>Clove arrives! Few gameplay changes</p>
+                        <a href="https://playvalorant.com/en-us/news/game-updates/valorant-patch-notes-8-05/" target="_blank">See article</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="https://playvalorant.com/en-us/news/game-updates/valorant-patch-notes-8-04/" target="_blank">
+                        <img id="item-img" src="/Images/news-item3-image.jpg" alt="News2 Image">
+                    </a>
+                    <div class="item-text">
+                        <p>05/03/2024</p>
+                        <p>Valorant Patch notes 8.04</p>
+                        <p>Updates for the upcoming premier. Some bug fixes</p>
+                        <a href="https://playvalorant.com/en-us/news/game-updates/valorant-patch-notes-8-04/" target="_blank">See article</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="https://valorantesports.com/news/everything-you-need-to-know-masters-madrid/" target="_blank">
+                        <img id="item-img" src="/Images/news-item4-image.jpg" alt="News2 Image">
+                    </a>
+                    <div class="item-text">
+                        <p>01/03/2024</p>
+                        <p>Everything you need to know: Masters-Madrid</p>
+                        <p>Tournament matchups, format schedule and more!</p>
+                        <a href="https://valorantesports.com/news/everything-you-need-to-know-masters-madrid/" target="_blank">See article</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="insights">
+            <h1>Insights</h1>
+        </div>
+    </div>
+    <script>
+        function Logout() {
+            var dropdown = document.getElementById("mydropdown");
+            var selectedValue = dropdown.value;
+            if (selectedValue === "Logout") {
+                window.location.href = "homepage.html";
+            }
+        }
+    </script>
+</body>
+
+</html>

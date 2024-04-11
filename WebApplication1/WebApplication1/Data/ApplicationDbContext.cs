@@ -11,28 +11,24 @@ namespace WebApplication1.Data
 
         public DbSet<agents> Agents { get; set; }
         public DbSet<Leaderboards> leaderboards {  get; set; }
-
+        public DbSet<Player> players { get; set; }
+        public DbSet<Location> locations { get; set; }
+        public DbSet<soloMatches> solomatches { get; set; }
+        public DbSet<Maps> maps { get; set; }
+        public DbSet<Weapons> weapons { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<agents>(entity =>
+            modelBuilder.Entity<Leaderboards>()
+        .Property(p => p.KD_Ratio)
+        .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<Leaderboards>()
+            .ToTable("player_leaderboard_users")
+            .HasAlternateKey(e => new
             {
-                entity.ToTable("Agents");
-                entity.HasKey(e => e.agent_name);
-
-                entity.Property(e => e.pick_pct).IsRequired();
-                entity.Property(e => e.win_pct).IsRequired();
-                entity.Property(e => e.tier).IsRequired();
-                entity.Property(e => e.role).IsRequired();
-
+                e.username,
+                e.Pname
             });
-            modelBuilder.Entity<Leaderboards>()
-                .Property(p => p.KD_Ratio)
-                .HasColumnType("decimal(18,2)");
-            modelBuilder.Entity<Leaderboards>()
-                .ToTable("player_leaderboard_users")
-                .HasAlternateKey(e => new { e.username, e.Pname });
         }
+        
     }
 }
