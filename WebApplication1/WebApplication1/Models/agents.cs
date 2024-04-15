@@ -22,8 +22,9 @@ namespace WebApplication1.Models
         [Required]
         public string ultimate { get; set; }
         [Required]
-        public string description { get; set; }
-        [Required]
         public string voiced_by { get; set; }
+		[Required]
+
+		public string description { get; set; }
     }
 }

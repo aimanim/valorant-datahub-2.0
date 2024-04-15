@@ -1,0 +1,190 @@
+﻿@model GenericModel
+@{
+	Layout = null;
+	void PrintTable(List<string> headers, string toDisplay)
+	{
+		Type TableType = Type.GetType("WebApplication1.Models." + toDisplay);
+								<thead>
+									<tr>
+										@{
+					foreach (var property in headers)
+					{
+
+																		<th>@property</th>
+					}
+										}
+
+									</tr>
+								</thead>
+								<tbody>
+									@{
+				int i = 0;
+									}
+									@foreach (var record in Model.GetType().GetProperty(toDisplay).GetValue(Model) as IEnumerable<dynamic>)
+			{
+										<tr>
+											<td>@(++i)</td>
+
+											@{
+						foreach (var property in TableType.GetProperties())
+						{
+							if (!property.GetGetMethod().IsVirtual)
+							{
+																				<td>@property.GetValue(record)</td>
+							}
+						}
+
+
+											}
+										</tr>
+			}
+								</tbody>
+	}
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Table info</title>
+	<link rel="stylesheet" href="~/css/AdminDataStyling.css" />
+	<style>
+		
+	</style>
+</head>
+<body>
+	@Html.Partial("/Views/shared/admin_nav.cshtml")
+	@{
+		string toDisplay = "hehe";
+		foreach (var property in typeof(GenericModel).GetProperties())
+		{
+			if (property.Name == Model.optionClicked)
+			{
+				toDisplay = property.Name;
+				break;
+			}
+
+		}
+	}
+	<div class="custom-container custom-scrollbar">
+
+		<table class="custom-table" id="custom-table">
+			@{
+				List<string> headers = new List<string>();
+
+
+				int i = 0;
+				switch (toDisplay)
+				{
+					case "agents":
+						toDisplay = "agents";
+						headers.Add("Serial No");
+						headers.Add("Agent Name");
+						headers.Add("Pick Percentage");
+						headers.Add("Win Percentage");
+						headers.Add("Tier");
+						headers.Add("Role");
+						headers.Add("Suited Weapon");
+						headers.Add("Ultimate");
+						headers.Add("Voiced by");
+						headers.Add("Description");
+						break;
+					case "soloMatches":
+						headers.Add("Serial No");
+						headers.Add("Match ID");
+						headers.Add("Kills");
+						headers.Add("Deaths");
+						headers.Add("Result");
+						headers.Add("Agent Played");
+						headers.Add("Map Name");
+						headers.Add("Player ID");
+						break;
+					case "Weapons":
+						headers.Add("Serial No");
+						headers.Add("Name");
+						headers.Add("Type");
+						headers.Add("Capacity");
+						headers.Add("Damage");
+						headers.Add("Fire Rate");
+						headers.Add("Reload Speed");
+						headers.Add("Fire Mode");
+						headers.Add("Max range");
+						break;
+				}
+				PrintTable(headers, toDisplay);
+
+			}
+		</table>
+	</div>
+		<div class="data" id="data">
+			@{
+
+				for (i = 1; i < headers.Count; i++)
+				{
+					
+					string tb_name = "tb" + i;
+					string property = headers[i];
+								<div class="item">
+									<label for=@tb_name>@property: </label>
+									<input type="text" id=@tb_name />
+								</div>
+				}
+			}
+		</div>
+		<div class="options">
+			<button onclick="hehe()">Clear</button>
+			<button>Insert</button>
+			<button>Update</button>
+			<button>Delete</button>
+			<button>Save changes</button>
+			<button>Undo</button>
+			
+		</div>
+</body>
+<script>
+	function hehe(){
+		var tbs = document.getElementsByTagName("input");
+		for (i = 0; i < tbs.length;i++){
+			tbs[i].value = "";
+		}
+		var hehe = document.getElementsByClassName("selected");
+		var cell = hehe[0].getElementsByTagName("td");
+		
+		var serialNumber = parseInt(cell[0].textContent.trim());
+		console.log(serialNumber);
+		if (serialNumber % 2 === 0) {
+			hehe[0].style.background = "rgb(98, 101, 101)";
+			hehe[0].style.background = "linear-gradient(77deg, rgba(98, 101, 101, 1) 0 %, rgba(87, 85, 83, 1) 100 %)";
+		}
+		else { 
+			hehe[0].style.background = "rgb(74, 77, 77)";
+			hehe[0].style.background = "linear-gradient(77deg, rgba(74, 77, 77, 1) 0 %, rgba(74, 72, 72, 1) 100 %)";
+		}
+
+
+	}
+	var table = document.getElementById('custom-table');
+	var rows = table.getElementsByTagName('tr');
+	for (var i = 0; i < rows.length; i++) {
+		rows[i].addEventListener('click', function () {
+			// Remove selected class from all rows
+			for (var j = 0; j < rows.length; j++) {
+				rows[j].classList.remove('selected');
+			}
+			// Add selected class to the clicked row
+			this.classList.add('selected');
+			console.log(this.classList);
+
+			// Get data cells of the clicked row
+			var cells = this.getElementsByTagName('td');
+
+			// Populate textboxes with row data
+			for (var k = 1; k < cells.length; k++) {
+				var hehe = 'tb' + (k + 1);
+				document.getElementById('tb' + (k)).value = cells[k].innerText;
+			}
+		});
+	}
+</script>
+</html>

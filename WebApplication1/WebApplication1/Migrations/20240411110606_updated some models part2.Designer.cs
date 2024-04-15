@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1.Data;
 
@@ -10,9 +11,11 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240411110606_updated some models part2")]
+    partial class updatedsomemodelspart2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -321,7 +324,7 @@ namespace WebApplication1.Migrations
                         .IsRequired();
 
                     b.HasOne("WebApplication1.Models.Player", "Players")
-                        .WithMany()
+                        .WithMany("SoloMatches")
                         .HasForeignKey("PlayersPid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -331,6 +334,11 @@ namespace WebApplication1.Migrations
                     b.Navigation("Players");
 
                     b.Navigation("maps");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Player", b =>
+                {
+                    b.Navigation("SoloMatches");
                 });
 #pragma warning restore 612, 618
         }

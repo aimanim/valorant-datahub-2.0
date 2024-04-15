@@ -10,8 +10,9 @@ namespace WebApplication1.Models
         public string Weapon_Name { get; set; }
         public string? Weapon_Type { get; set; }
         public int? Capacity { get; set; }
-        public decimal? Fire_Rate { get; set; }
-        public decimal? Reload_Speed { get; set; }
+        public float? Damage { get; set; }
+        public float? Fire_Rate { get; set; }
+        public float? Reload_Speed { get; set; }
         public string? Fire_Mode { get; set; }
         public int? Max_Range { get; set; }
     }

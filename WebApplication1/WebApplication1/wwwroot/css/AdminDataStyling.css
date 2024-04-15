@@ -1,0 +1,126 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+    color: white;
+}
+
+.custom-container {
+    width: 1315px; /* Width of the container */
+    overflow-y: auto; /* Enable vertical scrollbar */
+    margin-left: 100px;
+    margin-top: 30px;
+    background: rgb(46, 47, 47);
+    background: linear-gradient(77deg, rgba(46, 47, 47, 1) 0%, rgba(41, 40, 39, 1) 100%);
+    border: 3px solid gray;
+    border-radius: 10px;
+    height: 550px;
+}
+
+.custom-table {
+    border-collapse: collapse;
+    background: rgb(43, 46, 46);
+    height: 550px;
+    background: linear-gradient(77deg, rgba(43, 46, 46, 1) 0%, rgba(40, 38, 37, 1) 100%);
+    width: 95%;
+    margin: 10px auto;
+}
+
+    .custom-table .selected {
+        background: #0C0404;
+    }
+
+    .custom-table th,
+    .custom-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .custom-table th {
+        font-weight: bold;
+    }
+
+tr:nth-child(even) {
+    background: rgb(98, 101, 101);
+    background: linear-gradient(77deg, rgba(98, 101, 101, 1) 0%, rgba(87, 85, 83, 1) 100%);
+}
+
+tr:nth-child(odd) {
+    background: rgb(74, 77, 77);
+    background: linear-gradient(77deg, rgba(74, 77, 77, 1) 0%, rgba(74, 72, 72, 1) 100%);
+}
+
+
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+    margin-right: 100px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: black; /* Color of the scrollbar track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Rounded corners of the thumb */
+}
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #555; /* Color of the scrollbar thumb on hover */
+    }
+
+.data {
+    color: white;
+    width: 80%;
+    height: 250px;
+    margin-left: 100px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.item input {
+    height: 20px;
+    width: auto;
+}
+
+.item {
+    padding: 5px;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 400px;
+}
+    .item input {
+        margin-right: 80px;
+        width: 200px;
+        background-color: #990000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+.options{
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    gap: 3em;
+    justify-content: center;
+}
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #a21111; 
+    color: white; 
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+    button:hover {
+        background-color: #ee5d5d; 
+    }

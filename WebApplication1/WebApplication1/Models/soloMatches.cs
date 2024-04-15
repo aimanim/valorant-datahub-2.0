@@ -7,11 +7,12 @@ namespace WebApplication1.Models
     {
         [Key]
         public int Match_ID { get; set; }
-        public int? Kills { get; set; }
-        public int? Deaths { get; set; }
         
+        public int Kills { get; set; }
         
-        public string? Result { get; set; }
+        public int Deaths { get; set; }
+
+        public string Result { get; set; }
         [Required]
         [ForeignKey("Agents")]
         public string Agent_Played { get; set; }
@@ -22,7 +23,7 @@ namespace WebApplication1.Models
         public virtual Maps maps { get; set; }
         [Required]
         [ForeignKey("Players")]
-        public int Player_ID { get; set; }
+        public int Pid { get; set; }
         public virtual Player Players { get; set; }
     }
 }
