@@ -1,17 +1,30 @@
-.navbar {
+.navbar{
+    background-color: #9a413a;
     display: flex;
     justify-content: space-between;
-    /* Items will be spaced evenly */
-    background-color: #990000;
-    color: #f2f2f2;
-    padding: 10px;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
+    border-radius: 8px;
+    color: white;
     width: 100%;
+    margin: 0px;
+    padding: 0px;
 }
-.navbar .p2{
-    margin-right: 30px;
+.navbar p{
+    margin: 15px 20px;
+}
+.items{
+    background-color: #9a413a;
+    width: 500px;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+.items ul{
+    display: flex;
+    justify-content: space-between;
+}
+.items li, .items li a{
+    list-style: none;
+    text-decoration: none;
+    color: white;
 }
 body{
     background-color: black;
@@ -46,7 +59,7 @@ body{
 }
 .options_boxes{
     margin-left: 80px;
-    margin-top: 100px;
+    margin-top: 80px;
 }
 .options_boxes button{
     width: 250px;
@@ -60,13 +73,26 @@ body{
 .image_and_login{
     display: flex;
     align-items: center;
+    margin-left: 30px;
 }
-
-    
-.image_and_login img{
-    height: auto;
-    width: 56%;
+.imgcontainer{
+    width: 800px;
+    height: 480px;
     margin-left: 350px;
-    margin-top: 130px;
-    border-style: none;
+    margin-top: 50px;
+
+}
+.buttons{
+    margin-bottom: 130px;
+}
+.image_and_login img{
+    max-width: 100%; /* Ensure image does not exceed container width */
+    max-height: 100%; /* Ensure image does not exceed container height */
+    display: block; /* Make sure the image is displayed as a block element */
+    margin: auto;
+}
+#hehe{
+    width: 100px;
+    height: 100px;
+    display: block;
 }

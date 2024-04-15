@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url('Images/bind.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            color: #FFFFFF;
+            position: relative;
+            font-size: 20px;
+        }
+        #info {
+            position: absolute; 
+            top: 150px; 
+            left: 10px; 
+            width: auto;
+            height: auto;
+            background-color: transparent;
+            padding: 15px; 
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+        .item{
+            display: flex;
+            height: 40px;
+            width: 400px;
+            gap: 1em;
+            color: white;
+            margin-top: 15px;
+
+        }
+        .item img{
+            display: inline-block;
+        }
+        #hehe{
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            gap: 0em;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <h2>Insights</h2>
+        <div class="item">
+            <img src="/Images/location.png">
+            <p>Located in: Hyderabad, Pakistan</p>
+        </div>
+        <div class="item">
+            <img src="/Images/submachine-gun.png">
+            <p>Suited Weapon: Vandal</p>
+        </div>
+        <div class="item">
+            <img src="/Images/bomb.png">
+            <p>Spike sites: 2</p>
+        </div>
+        <div class="item" id="hehe">
+            <h3 style="margin-left: 55px;">About this map</h3>
+            
+            <p style="margin-top: -10px; text-align: left; margin-left: 55px;">
+                Take in the sights of historic ruins or seaside caves on this tropical paradise. But bring some cover. You'll need them for the wide open spaces and long range engagements. Watch your flanks and this will be a Breeze.
+            </p>
+        </div>
+    </div>
+    
+</body>
+
+
+</html>

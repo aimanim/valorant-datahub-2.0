@@ -12,34 +12,51 @@
 <body>
     <header>
         <nav class="navbar">
-            <p class="p1">Valorant Datahub</p>
-            <p class="p2">Guest mode</p>
+            <p>Valorant Datahub</p>
+            <div class="items">
+                <ul>
+                    <li><a href="homepage.html">Home</a></li>
+                    <li>Guest Mode</li>
+                </ul>
+            </div>
         </nav>
     </header>
     <div class="image_and_login">
-        <h1 style="margin-top: 150px; padding: 20px;color: white;">Welcome to Valorant Datahub<br>Track your in-game stats today</h1>
+        <h1 style="margin-top: 20px; padding: 20px;color: white;">Welcome to Valorant Datahub<br>Track your in-game stats today</h1>
             
         <div class="buttons">
             <button class="login_button">Login</button>
-            <button class="register_button">Sign up</button>
+            <button class="register_button" onclick="OpenRegister()">Sign up</button>
         </div>
-        <img src="Images/valo.jpg" alt="Couldn't load image">
+        <div class="imgcontainer">
+            <img src="Images/hehe.jpg" alt="Couldn't load image">
+        </div>
+        
     </div>
     
     <div class="options_boxes">
-        <button class="agents" onclick="OpenAgents()">View agents</button>
-        <button class="maps">View maps</button>
-        <button class="weapons">View weapons</button>
-        <button class="leaderboards" onclick="OpenLeaderboards()">View leaderboards</button>
-        <button class="stats">View stats</button>
+        <button class="agents" onclick="OpenAgents()">View Agents</button>
+        <button class="maps" onclick="OpenWeapons()">View Maps</button>
+        <button class="weapons" onclick="OpenWeaponary()">View Weapons</button>
+        <button class="leaderboards" onclick="OpenLeaderboards()">View Leaderboards</button>
+        <button class="stats">View Stats</button>
     </div>
 </body>
 <script>
+    function OpenWeapons(){
+        window.location.href= "maps.html";
+    }
     function OpenAgents(){
         window.location.href= "agents.html";
     }
     function OpenLeaderboards(){
         window.location.href = "leaderboards.html";
+    }
+    function OpenRegister(){
+        window.location.href = "signup.html";
+    }
+    function OpenWeaponary(){
+        window.location.href = "weapons.html";
     }
 </script>
 </html>
