@@ -5,41 +5,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            background-color: black;
+            color: white;
+        }
+
         .navbar {
-            background-color: #990000;
+            background-color: #9a413a;
             display: flex;
             justify-content: space-between;
-            border-radius: 8px;
+            border-radius: 35px;
             color: white;
             width: 100%;
-            margin: 0px;
             padding: 0px;
         }
 
             .navbar p {
-                margin: 15px 20px;
+                margin: 25px 0px 20px 20px;
             }
 
         .items {
-            background-color: #990000;
-            width: 500px;
-            border-radius: 5px;
-            margin-right: 20px;
+            background-color: #9a413a;
+            width: 1100px;
+            margin-right: 30px;
+            display: inline-block;
         }
 
             .items ul {
                 display: flex;
                 justify-content: space-between;
+                list-style-type: none;
             }
 
-            .items li, .items li a {
-                list-style: none;
+
+            .items li a {
                 text-decoration: none;
                 color: white;
+                display: inline-block;
+                text-align: center;
+                padding: 10px 14px;
             }
+
+            .items .dropdown-content {
+                display: none;
+                position: absolute;
+                background: rgb(58, 57, 57);
+                min-width: 130px;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            }
+
+            .items li a:hover,
+            .dropdown:hover,
+            .dropdown-content a:hover {
+                background-color: #870505;
+            }
+
+            .items .dropdown-content a {
+                color: white;
+                padding: 12px 14px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .items .dropdown-content a:hover {
+                    background: rgb(136, 20, 20);
+                }
+
+            .items .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .items .dropdown {
+                display: inline-block;
+            }
+
     </style>
 
 </head>
+
 <body>
     <header>
         <nav class="navbar">
@@ -47,11 +93,24 @@
             <div class="items">
                 <ul>
                     <li><a href="/Homepage/Index">Home</a></li>
-                    <li>Guest Mode</li>
+                    <li><a href="#">Weapons</a></li>
+                    <li><a href="#">Leaderboards</a></li>
+                    <li><a href="#">Agents</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Current rotation</a>
+                        <div class="dropdown-content">
+                            <a href="#">Ascent</a>
+                            <a href="#">Bind</a>
+                            <a href="#">Breeze</a>
+                            <a href="#">Icebox</a>
+                            <a href="#">Lotus</a>
+                            <a href="#">Split</a>
+                            <a href="#">Sunset</a>
+                        </div>
+                    </li>
+                    <li id="hehe"><a>Guest Mode</a></li>
                 </ul>
             </div>
         </nav>
     </header>
-    <script>
-    </script>
 </body>

@@ -66,15 +66,40 @@
         }
 
         .position1, .position2, .position3 {
+            padding: 5px;
             height: 200px;
             width: 200px;
-            background-color: green;
+            background-color: #070e16;
             margin-left: 30px;
-            margin-top: 120px;
+            margin-top: 100px;
+            border-radius: 5px;
+            border: 1px solid #a6a6a6;
+            box-shadow: 0 0 0 1px rgb(148, 32, 53)
+        }
+        .position1 {
+            margin-top: 70px;
+            
         }
 
-        .position1 {
-            margin-top: 90px;
+        .positions img{
+            display: inline-block;
+            height: 80px;
+            margin-left: 60px;
+            margin-top: 20px;
+        }
+        .position3{
+            margin-top: 110px;
+        }
+        .text{
+
+            display: flex;
+            justify-content: space-evenly;
+            gap: 3em;
+            margin-top: 35px;
+            padding-bottom: 15px;
+        }
+        .text p{
+                font-size: 18px;
         }
     </style>
 </head>
@@ -82,18 +107,30 @@
 <body>
     @Html.Partial("/Views/shared/homepage_nav.cshtml")
     <div class="positions">
-        <div class="position2">
-            position2
+        <div class="position2" id="position2">
+            <img src="~/Images/second.png">
+            <div class="text" id="text">
+                <p id="playerName"></p>
+                <p id="playerRank"></p>
+            </div>
         </div>
-        <div class="position1">
-            position1
+        <div class="position1" id="position1">
+            <img src="~/Images/first.png" />
+            <div class="text" id="text">
+                <p id="playerName">hehe</p>
+                <p id="playerRank">hehe</p>
+            </div>
         </div>
-        <div class="position3">
-            position3
+        <div class="position3" id="position3">
+            <img src="~/Images/third.png" />
+            <div class="text" id="text">
+                <p id="playerName"></p>
+                <p id="playerRank"></p>
+            </div>
         </div>
     </div>
     <div class="MyTable">
-        <table class="custom-table">
+        <table class="custom-table" id="custom-table">
             <thead>
                 <tr>
                     <th>Rank</th>
@@ -127,8 +164,6 @@
                         <td>@record.deaths</td>
                     </tr>
                 }
-
-
             </tbody>
         </table>
     </div>
@@ -136,6 +171,21 @@
         function GotoHome() {
             window.location.href = "Homepage/Index";
         }
+        function displayPositions(){
+            var table = document.getElementById('custom-table');
+            console.log(table);
+            var rows = table.getElementsByTagName('tr');
+            for(var i=1;i<=3;i++)
+            {
+                console.log(rows[i]);
+                position1PTag = document.querySelector('#position' + (i) + ' #text #playerName');
+                var cells = rows[i].getElementsByTagName('td');
+                position1PTag.textContent = cells[1].innerText;
+                position1PTag = document.querySelector('#position' + (i) + ' #text #playerRank');
+                position1PTag.textContent = cells[6].innerText;
+            }
+        }
+        window.onload = displayPositions;
     </script>
 </body>
 

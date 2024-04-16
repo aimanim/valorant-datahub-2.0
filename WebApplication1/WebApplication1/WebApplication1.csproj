@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <None Include="wwwroot\css\admin.css" />
-    <None Include="wwwroot\css\agent_display.css" />
     <None Include="wwwroot\css\signup.css" />
     <None Include="wwwroot\css\styling.css" />
   </ItemGroup>

@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Stats</title>
+</head>
+<style>
+    th, tr, td {
+        padding: 8px;
+    }
+    h3{
+        margin-top: 2px;
+        margin-bottom: 0;
+    }
+    body {
+        font-size=20px;
+        background-color: black;
+        color: white;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    }
+    #info {
+        position: absolute;
+        top: 180px;
+        left: 50px;
+        background-color: rgba(255, 100, 100, 0.7); /* Semi-transparent background */
+        padding: 15px;
+        border-radius: 20px;
+    }
+    #stats {
+        position: absolute;
+        top: 170px;
+        left: 400px;
+        width: 600px;
+        background-color: rgba(255, 100, 100, 0.7); /* Semi-transparent background */
+        padding: 15px;
+        border-radius: 20px;
+    }
+    #map {
+        position: absolute;
+        top: 170px;
+        left: 1130px;
+        width: 300px;
+        background-color: rgba(255, 100, 100, 0.7); /* Semi-transparent background */
+        padding: 15px;
+        border-radius: 20px;
+    }
+    #logo {
+        position: absolute;
+        top: 460px;
+        left: 40px;
+        width: 300px;
+    }
+    #rank {
+        background: rgb(113,27,27);
+        width:150px;
+        background: linear-gradient(185deg, rgba(113,27,27,1) 0%, rgba(150,0,0,1) 66%, rgba(113,27,27,1) 100%);
+        padding: 15px;
+        border-radius: 20px;
+    }
+    #kd {
+        background: rgb(113,27,27);
+        background: linear-gradient(185deg, rgba(113,27,27,1) 0%, rgba(150,0,0,1) 66%, rgba(113,27,27,1) 100%);
+        padding: 15px;
+        border-radius: 20px;
+    }
+    #win {
+        background: rgb(113,27,27);
+        width:150px;
+        background: linear-gradient(185deg, rgba(113,27,27,1) 0%, rgba(150,0,0,1) 66%, rgba(113,27,27,1) 100%);
+        padding: 15px;
+        border-radius: 20px;
+    }
+</style>
+<body>
+    <h2>navbar</h2>
+    <div id="info">
+        <h1 style="margin:10px;">Player Info</h1>
+        <TABLE>
+            <TR>
+                <TD>Player ID:</TD>
+                <TD>12345</TD>
+            </TR>
+            <TR>
+                <TD>Username:</TD>
+                <TD>aimanime</TD>
+            </TR>
+            <TR>
+                <TD>Name:</TD>
+                <TD>Aiman Imran</TD>
+            </TR>
+            <TR>
+                <TD>Location:</TD>
+                <TD>Karachi, Pakistan</TD>
+            </TR>
+        </TABLE>
+    </div>
+    <div id="stats">
+        <h1 style="margin:20px 20px 20px 37px;">Game Stats</h1>
+        
+        <TABLE style="width:570px;padding:10px;margin:10px auto;border:2px;">
+            <tr>
+                <td>
+                    <div id="rank">
+                        <div style="font-size:20px;">Current Rank</div>
+                        <p>Iron III</p> <div style="position: absolute; top: 160px; left: 135px;"><img src="rank.png" alt="not found" height="30" /></div>
+                    </div>
+                </td>
+                <td>
+                    <div id="kd">
+                        <div style="font-size:20px;">K/D Ratio</div>
+                        <p>1.4</p>
+                    </div>
+                </td>
+                <td colspan="2">
+                    <div id="win">
+                        <div style="font-size:20px;">Win Percentage</div>
+                        <p>69%</p>
+                    </div>
+                </td>
+            </tr>
+            <TR>
+                <TD style="padding-left:20px;padding-top:20px;">Total Kills: </TD>
+                <TD>60</TD>
+                <TD>MMR: </TD>
+                <TD>120</TD>
+            </TR>
+            <TR>
+                <TD style="padding-left:20px;">Matches Played: </TD>
+                <TD>100</TD>
+                <TD>Matches Won: </TD>
+                <TD>69</TD>
+            </TR>
+            <tr style="padding:0px;margin:0px;">
+                <td  colspan="2" style="padding-left:20px;"><h3>Most Played Agent:</h3></td>
+                <td colspan="2" ><h3>Most Played Role:</h3></td>
+            </tr>
+            <tr style="padding-top:2px; margin-top:0px;">
+                <td colspan="2" style="padding-left:20px;">Sage <div style="position: absolute; top: 320px; left: 260px;"><img src="Images\sage.png" alt="not found" width="60px" /></div></td>
+                <td colspan="2" >Sentinel</td>
+            </tr>
+        </TABLE>
+    </div>
+    <div id="map">
+        <h1 style="padding-left:20px;margin-top:12px;"><img src="Images\map.png" alt="not found" height="22px" />     Top Maps</h1>
+        <table width="300px" style="text-align:center;">
+            <tr>
+                <td>
+                    Breeze
+                </td>
+                <td>0W-0L</td>
+            </tr>
+            <tr>
+                <td>
+                    Ascent
+                </td>
+                <td>0W-0L</td>
+            </tr>
+            <tr>
+                <td>
+                    Fracture
+                </td>
+                <td>0W-0L</td>
+            </tr>
+            <tr>
+                <td>
+                    Haven
+                </td>
+                <td>0W-0L</td>
+            </tr>
+            <tr>
+                <td>
+                    Icebox
+                </td>
+                <td>0W-0L</td>
+            </tr>
+            <tr>
+                <td>
+                    Lotus
+                </td>
+                <td>0W-0L</td>
+            </tr>
+            <tr>
+                <td>
+                    Pearl
+                </td>
+                <td>0W-0L</td>
+            </tr>
+            <tr>
+                <td>
+                    Split
+                </td>
+                <td>0W-0L</td>
+            </tr>
+            <tr>
+                <td>
+                    Sunset
+                </td>
+                <td>0W-0L</td>
+            </tr>
+        </table>
+    </div>
+    <div id="logo">
+        <img src="Images\valo.jpg" alt="not found" width="300" />
+    </div>
+</body>
+</html>
