@@ -17,6 +17,8 @@ namespace WebApplication1.Models
         public int Location_id { get; set; }
         public virtual Location Locations { get; set; }
         public string? Description { get; set; }
+        [NotMapped]
+        public string location { get; set; }
 
     }
 }

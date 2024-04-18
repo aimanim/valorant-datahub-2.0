@@ -1,0 +1,94 @@
+﻿@model Maps
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .bg_image{
+            top: 10px;
+            left: 0;
+            position: relative;
+            width: 100%;
+            height: 80%;
+            display: block;
+            z-index: 0;
+        }
+        .bg_image img{
+            width: 100%;
+            height: 100%;
+        }
+
+        #info {
+            position: absolute;
+            top: 350px;
+            left: 10px;
+            width: auto;
+            height: auto;
+            background-color: transparent;
+            padding: 15px;
+            font-size: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        .item {
+            display: flex;
+            height: 40px;
+            width: 400px;
+            gap: 1em;
+            color: white;
+            margin-top: 15px;
+        }
+
+            .item img {
+                display: inline-block;
+            }
+
+        #hehe {
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            gap: 0em;
+        }
+    </style>
+</head>
+<body>
+    @Html.Partial("/views/shared/homepage_nav.cshtml")
+    <div class="bg_image">
+        <img src="~/Images/@(Model.Map_Name).jpg" />
+    </div>
+    <div id="info">
+        <h2>Insights</h2>
+        <div class="item">
+            <img src="~/Images/location.png">
+            <p>Located in: @Model.location</p>
+        </div>
+        <div class="item">
+            <img src="~/Images/submachine-gun.png">
+            <p>Suited Weapon: @Model.Suited_Weapon</p>
+        </div>
+        <div class="item">
+            <img src="~/Images/bomb.png">
+            <p>Spike sites: @Model.Spike_sites</p>
+        </div>
+        <div class="item" id="hehe">
+            <h3 style="margin-left: 55px;">About this map</h3>
+
+            <p style="margin-top: -10px; text-align: left; margin-left: 55px;">
+                @Model.Description
+            </p>
+        </div>
+    </div>
+    <script>
+        console.log("searching for '~/Images/@(Model.Map_Name)-background.jpg");
+
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,268 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weapons</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .type .images {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 100px;
+            background-color: #131723;
+        }
+
+        .type {
+            display: flex;
+            flex-direction: row;
+            background-color: #131723;
+        }
+
+        .button {
+            text-align: center;
+            height: auto;
+            width: 300px;
+            padding: 20px;
+            margin: 5px;
+        }
+
+            .button img {
+                max-width: 100%;
+                max-height: 100%;
+                display: block;
+                border: 1px solid rgb(155, 149, 149);
+                border-radius: 5px;
+                box-shadow: 5px 0 5px rgba(0, 0, 0.3, 0.3);
+                padding: 10px;
+            }
+
+            .button:hover {
+                transform: scale(1.05);
+                /* Increase image size by 20% on hover */
+                transition: transform 0.3s ease-in-out;
+                /* Smooth transition effect */
+            }
+
+            .button p {
+                float: bottom;
+                color: rgb(203, 189, 189);
+                font-size: 20px;
+                margin: 15px;
+            }
+
+        #automatic .images {
+            margin-left: 110px;
+        }
+
+        #automatic {
+            margin-top: -30px;
+        }
+
+        #pistols .images {
+            margin-left: 100px;
+        }
+
+        .type .text {
+            background-color: #9a413a;
+            width: 170px;
+        }
+
+        #automatic .text {
+            padding-top: 100px;
+        }
+
+        #pistols .text {
+            padding-top: 100px;
+        }
+
+        .bruh ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+
+        .text li,
+        .text a {
+            text-decoration: none;
+            color: white;
+            width: 170px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-top: 100px;
+            padding: 20px;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .heading {
+            display: inline-block;
+            margin-left: 20px;
+            padding-top: 20px;
+        }
+
+        
+
+        .text:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    @Html.Partial("/views/shared/homepage_nav.cshtml")
+    <div class="bruh">
+    <ul>
+        <hr>
+        <div class="type" id="automatic">
+            <div class="text">
+            <li><a href="#">Rifles</a></li>
+            </div>
+            <div class="images">
+                <div class="button">
+                    <a href ="/WeaponDisplay/Index?option=vandal">
+                    <img src="~/Images/vandal.jpg" alt="Image 1">
+                    </a>
+                    <p>Vandal</p>
+                </div>
+                <div class="button">
+            <a href="/WeaponDisplay/Index?option=phantom">
+                    <img src="~/Images/phantom.jpg" alt="Image 1">
+            </a>
+                    <p>Phantom</p>
+                </div>
+                <div class="button">
+            <a href="/WeaponDisplay/Index?option=bulldog">
+                    <img src="~/Images/bulldog.jpg" alt="Image 1">
+
+            </a>
+                    <p>Bulldog</p>
+                </div>
+                <div class="button">
+            <a href="/WeaponDisplay/Index?option=guardian">
+                    <img src="~/Images/guardian.jpg" alt="Image 1">
+            </a>
+                    <p>Guardian</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="type" id="smgs">
+            <div class="text">
+                <li><a href="#">SMGs</a></li>
+            </div>
+        <div class="images">
+            <div class="button">
+                <img src="~/Images/spectre.jpg" alt="Image 1">
+                <p>Spectre</p>
+            </div>
+            <div class="button">
+                <img src="~/Images/stinger.jpg" alt="Image 1">
+                <p>Stinger</p>
+            </div>
+        </div>
+        </div>
+        <hr>
+        <div class="type" id="pistols">
+            <div class="text">
+        <li><a href="#">Pistols</a></li>
+        </div>
+        <div class="images">
+            <div class="button">
+                <img src="~/Images/frenzy.jpg" alt="Image 1">
+                <p>Frenzy</p>
+            </div>
+            <div class="button">
+                <img src="~/Images/classic.jpg" alt="Image 1">
+                <p>Classic</p>
+            </div>
+            <div class="button">
+                <img src="~/Images/shorty.jpg" alt="Image 1">
+                <p>Shorty</p>
+            </div>
+            <div class="button">
+                <img src="~/Images/ghost.jpg" alt="Image 1">
+                <p>Ghost</p>
+            </div>
+            <div class="button">
+                <img src="~/Images/sheriff.jpg" alt="Image 1">
+                <p>Sheriff</p>
+            </div>
+        </div>
+        </div>
+        <hr>
+        <div class="type" id="shotguns">
+            <div class="text">
+        <li><a href="#">Shotguns</a></li>
+        </div>
+        <div class="images">
+
+            <div class="button">
+                <img src="~/Images/judge.jpg" alt="Image 1">
+                <p>Judge</p>
+            </div>
+            <div class="button">
+                <img src="~/Images/bucky.jpg" alt="Image 1">
+                <p>Bucky</p>
+            </div>
+        </div>
+        </div>
+        <hr>
+
+        <div class="type" id="snipers">
+            <div class="text">
+        <li><a href="#">Snipers</a></li>
+        </div>
+        <div class="images">
+            <div class="button">
+                <img src="~/Images/marshal.jpg" alt="Image 1">
+                <p>Marshall</p>
+            </div>
+            <div class="button">
+                <img src="~/Images/operator.jpg" alt="Image 1">
+                <p>Operator</p>
+            </div>
+        </div>
+        </div>
+        <hr>
+        <div class="type" id="machineguns">
+            <div class="text">
+        <li><a href="#">Machine Guns</a></li>
+        </div>
+        <div class="images">
+            <div class="button">
+                <img src="~/Images/odin.jpg" alt="Image 1">
+                <p>Odin</p>
+            </div>
+            <div class="button">
+                <img src="~/Images/ares.jpg" alt="Image 1">
+                <p>Ares</p>
+            </div>
+        </div>
+        </div>
+        <hr>
+    </ul>
+    </div>
+    <script>
+        const div1 = document.querySelector('.text');
+        const div2 = document.querySelector('.images');
+
+    </script>
+</body>
+
+</html>

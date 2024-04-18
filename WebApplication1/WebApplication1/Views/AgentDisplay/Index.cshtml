@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Agent_And_Abilities
+@{
 	Layout = null;
 }
 <!DOCTYPE html>
@@ -145,97 +146,81 @@
     <div class="containers">
 
         <div class="container1">
-            <h2 style="margin-left: 10px;">Hero's name</h2>
+            <h2 style="margin-left: 10px;">@Model.agent.agent_name</h2>
             <div class="image_block">
-                <img src="~/Images/gekko1.jpg">
+                <img src="~/Images/@Model.agent.agent_name-1.jpg">
             </div>
 
-            <p style="margin-left: 10px;">Hero's Role</p>
-            <p style="margin-left: 10px; margin-top: 10px;">Hero's Description</p>
+            <p style="margin-left: 10px; margin-top: 60px">Role: @Model.agent.role</p>
+            <p style="margin-left: 10px; margin-top: 10px;">Description: @Model.agent.description</p>
         </div>
         <div class="container2">
             <div class=abilityQ>
                 <div class="ability_img">
-                    <img src="~/Images/gekko-Q.jpg" alt="Ability's icon">
+                    <img src="~/Images/@Model.agent.agent_name-Q.jpg" alt="Ability's icon">
                 </div>
                 <div class="ability_text">
                     <div class="ability_text_first_row">
                         <p class="hehe">Q</p>
-                        <p class="hehe2">Ability name</p>
+                        <p class="hehe2">@Model.abilities.Q.Substring(0, Model.abilities.Q.IndexOf(':'))</p>
                     </div>
                     <p>
-                        Equip Wingman. FIRE to send Wingman forward seeking enemies. Wingman unleashes a concussive blast
-                        toward the first enemy he sees. ALT FIRE when targeting a Spike site or planted Spike to have
-                        Wingman defuse or plant the Spike. To plant, Gekko must have the Spike in his inventory. When
-                        Wingman expires he reverts into a dormant globule. Interact to reclaim the globule and gain
-                        another Wingman charge after a short cooldown.
+                        @Model.abilities.Q;
                     </p>
                 </div>
             </div>
             <div class=abilityE>
                 <div class="ability_img">
-                    <img src="~/Images/gekko-E.jpg" alt="Ability's icon">
+                    <img src="~/Images/@Model.agent.agent_name-E.jpg" alt="Ability's icon">
                 </div>
                 <div class="ability_text">
                     <div class="ability_text_first_row">
                         <p class="hehe">E</p>
-                        <p class="hehe2">Ability name</p>
+                        <p class="hehe2">@Model.abilities.E.Substring(0, Model.abilities.E.IndexOf(':'))</p>
                     </div>
                     <p>
-                        Equip Wingman. FIRE to send Wingman forward seeking enemies. Wingman unleashes a concussive blast
-                        toward the first enemy he sees. ALT FIRE when targeting a Spike site or planted Spike to have
-                        Wingman defuse or plant the Spike. To plant, Gekko must have the Spike in his inventory. When
-                        Wingman expires he reverts into a dormant globule. Interact to reclaim the globule and gain
-                        another Wingman charge after a short cooldown.
+                        @Model.abilities.E;
                     </p>
                 </div>
             </div>
             <div class=abilityC>
                 <div class="ability_img">
-                    <img src="~/Images/gekko-C.jpg" alt="Ability's icon">
+                    <img src="~/Images/@Model.agent.agent_name-C.jpg" alt="Ability's icon">
                 </div>
                 <div class="ability_text">
                     <div class="ability_text_first_row">
                         <p class="hehe">C</p>
-                        <p class="hehe2">Ability name</p>
+                        <p class="hehe2">@Model.abilities.C.Substring(0, Model.abilities.C.IndexOf(':'))</p>
                     </div>
                     <p>
-                        Equip Wingman. FIRE to send Wingman forward seeking enemies. Wingman unleashes a concussive blast
-                        toward the first enemy he sees. ALT FIRE when targeting a Spike site or planted Spike to have
-                        Wingman defuse or plant the Spike. To plant, Gekko must have the Spike in his inventory. When
-                        Wingman expires he reverts into a dormant globule. Interact to reclaim the globule and gain
-                        another Wingman charge after a short cooldown.
+                        @Model.abilities.C;
                     </p>
                 </div>
             </div>
             <div class=abilityX>
                 <div class="ability_img">
-                    <img src="~/Images/gekko-X.jpg" alt="Ability's icon">
+                    <img src="~/Images/@Model.agent.agent_name-X.jpg" alt="Ability's icon">
                 </div>
                 <div class="ability_text">
                     <div class="ability_text_first_row">
                         <p class="hehe">X</p>
-                        <p class="hehe2">Ability name</p>
+                        <p class="hehe2">@Model.abilities.X.Substring(0, Model.abilities.X.IndexOf(':'))</p>
                     </div>
                     <p>
-                        EQUIP Wingman. FIRE to send Wingman forward seeking enemies. Wingman unleashes a concussive blast
-                        toward the first enemy he sees. ALT FIRE when targeting a Spike site or planted Spike to have
-                        Wingman defuse or plant the Spike. To plant, Gekko must have the Spike in his inventory. When
-                        Wingman expires he reverts into a dormant globule. INTERACT to reclaim the globule and gain
-                        another Wingman charge after a short cooldown.
+                        @Model.abilities.X;
                     </p>
                 </div>
             </div>
         </div>
         <div class="container3">
-            <h2>Agent's name Insights</h2>
+            <h2>@Model.agent.agent_name : Insights</h2>
             <div class="icon_pickpct">
                 <div class="icon-container">
-                    <img src="~/Images/gekko-icon.jpg" alt="agent's icon">
+                    <img src="~/Images/@Model.agent.agent_name-icon.jpg" alt="agent's icon">
                 </div>
-                <p>Pick Rate<br>rate from database</p>
+                <p>Pick Rate<br>@Model.agent.pick_pct %</p>
             </div>
-            <p style="margin-top: 30px">Win percentage: </p>
+            <p style="margin-top: 30px">Win percentage: @Model.agent.win_pct %</p>
             <div id="winBar" style="width: 350px; height: 15px; background-color:#373c41; border-radius: 20px;">
 
                 <div id="winBarFill" style="height: 100%; background: rgb(213,160,35);
@@ -244,16 +229,16 @@
 
             <div class="stats">
                 <div class="stat1">
-                    <p>Tier<br>Value</p>
+                    <p>Tier<br>@Model.agent.tier</p>
                 </div>
                 <div class="stat2">
-                    <p>Role<br>Value</p>
+                    <p>Role<br>@Model.agent.role</p>
                 </div>
                 <div class="stat3">
-                    <p>Suited Weapon<br>Value</p>
+                    <p>Suited Weapon<br>@Model.agent.suited_weapon</p>
                 </div>
                 <div class="stat4">
-                    <p>Voiced by<br>Value</p>
+                    <p>Voiced by<br>@Model.agent.voiced_by</p>
                 </div>
 
             </div>
@@ -267,7 +252,7 @@
         }
 
         // Example win percentage (change this value as needed)
-        const winPercentage = 75; // Represents 75% win rate
+        const winPercentage = @Model.agent.win_pct; // Represents 75% win rate
 
         // Update the win bar
         updateWinBar(winPercentage);
