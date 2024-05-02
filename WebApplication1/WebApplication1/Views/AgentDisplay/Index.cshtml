@@ -1,0 +1,263 @@
+﻿@model Agent_And_Abilities
+@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+        }
+        .containers {
+            background-color: black;
+            display: flex;
+            flex-direction: row;
+            padding: 10px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .container1 {
+            background-color: #0f1923;
+            width: 400px;
+            height: auto;
+            margin-left: 30px;
+        }
+
+            .container1 .image_block {
+                margin-top: 100px;
+                height: auto;
+                width: 400px;
+                display: block;
+            }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .ability_img {
+            background-color: red;
+            height: 100px;
+            width: 650px;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .container2 {
+            background-color: black;
+            width: 450px;
+            height: auto;
+            margin-left: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+            .container2 .abilityQ,
+            .abilityE,
+            .abilityC,
+            .abilityX {
+                margin-top: 10px;
+                margin: 5px;
+                background-color: #0f1923;
+                display: flex;
+                color: white;
+                height: 300px;
+            }
+
+        .ability_text_first_row p {
+            margin-left: 5px;
+        }
+
+        .ability_text {
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            font-size: 15px;
+            font-family: 'Arial Narrow', sans-serif;
+            line-height: 1.5;
+            padding-bottom: 10px;
+            padding-right: 10px;
+        }
+
+        .ability_text_first_row {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            color: white;
+            font-size: 17px;
+            gap: 1em;
+        }
+
+        .hehe {
+            color: white;
+            background-color: #273039;
+            padding: 5px;
+        }
+
+        .hehe2 {
+            padding-top: 5px;
+        }
+
+        .container3 {
+            background-color: #0f1923;
+            width: 400px;
+            height: 700px;
+            margin-left: 30px;
+            padding-left: 20px;
+        }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            gap: 1.5em;
+        }
+
+        .stat1, .stat2, .stat3, .stat4, .stat5, .stat6 {
+            width: 150px;
+            height: 100px;
+            margin: 10px;
+            font-size: 19px;
+            line-height: 1.5;
+        }
+
+        .icon-container {
+            display: block;
+            width: 100px;
+            height: 100px;
+        }
+
+        .icon_pickpct {
+            display: flex;
+            gap: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    @Html.Partial("/views/shared/homepage_nav.cshtml")
+    <div class="containers">
+
+        <div class="container1">
+            <h2 style="margin-left: 10px;">@Model.agent.agent_name</h2>
+            <div class="image_block">
+                <img src="~/Images/@Model.agent.agent_name-1.jpg">
+            </div>
+
+            <p style="margin-left: 10px; margin-top: 60px">Role: @Model.agent.role</p>
+            <p style="margin-left: 10px; margin-top: 10px;">Description: @Model.agent.description</p>
+        </div>
+        <div class="container2">
+            <div class=abilityQ>
+                <div class="ability_img">
+                    <img src="~/Images/@Model.agent.agent_name-Q.jpg" alt="Ability's icon">
+                </div>
+                <div class="ability_text">
+                    <div class="ability_text_first_row">
+                        <p class="hehe">Q</p>
+                        <p class="hehe2">@Model.abilities.Q.Substring(0, Model.abilities.Q.IndexOf(':'))</p>
+                    </div>
+                    <p>
+                        @Model.abilities.Q;
+                    </p>
+                </div>
+            </div>
+            <div class=abilityE>
+                <div class="ability_img">
+                    <img src="~/Images/@Model.agent.agent_name-E.jpg" alt="Ability's icon">
+                </div>
+                <div class="ability_text">
+                    <div class="ability_text_first_row">
+                        <p class="hehe">E</p>
+                        <p class="hehe2">@Model.abilities.E.Substring(0, Model.abilities.E.IndexOf(':'))</p>
+                    </div>
+                    <p>
+                        @Model.abilities.E;
+                    </p>
+                </div>
+            </div>
+            <div class=abilityC>
+                <div class="ability_img">
+                    <img src="~/Images/@Model.agent.agent_name-C.jpg" alt="Ability's icon">
+                </div>
+                <div class="ability_text">
+                    <div class="ability_text_first_row">
+                        <p class="hehe">C</p>
+                        <p class="hehe2">@Model.abilities.C.Substring(0, Model.abilities.C.IndexOf(':'))</p>
+                    </div>
+                    <p>
+                        @Model.abilities.C;
+                    </p>
+                </div>
+            </div>
+            <div class=abilityX>
+                <div class="ability_img">
+                    <img src="~/Images/@Model.agent.agent_name-X.jpg" alt="Ability's icon">
+                </div>
+                <div class="ability_text">
+                    <div class="ability_text_first_row">
+                        <p class="hehe">X</p>
+                        <p class="hehe2">@Model.abilities.X.Substring(0, Model.abilities.X.IndexOf(':'))</p>
+                    </div>
+                    <p>
+                        @Model.abilities.X;
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="container3">
+            <h2>@Model.agent.agent_name : Insights</h2>
+            <div class="icon_pickpct">
+                <div class="icon-container">
+                    <img src="~/Images/@Model.agent.agent_name-icon.jpg" alt="agent's icon">
+                </div>
+                <p>Pick Rate<br>@Model.agent.pick_pct %</p>
+            </div>
+            <p style="margin-top: 30px">Win percentage: @Model.agent.win_pct %</p>
+            <div id="winBar" style="width: 350px; height: 15px; background-color:#373c41; border-radius: 20px;">
+
+                <div id="winBarFill" style="height: 100%; background: rgb(213,160,35);
+                background: linear-gradient(77deg, rgba(213,160,35,1) 0%, rgba(222,72,18,1) 100%); border-radius: 20px;"></div>
+            </div>
+
+            <div class="stats">
+                <div class="stat1">
+                    <p>Tier<br>@Model.agent.tier</p>
+                </div>
+                <div class="stat2">
+                    <p>Role<br>@Model.agent.role</p>
+                </div>
+                <div class="stat3">
+                    <p>Suited Weapon<br>@Model.agent.suited_weapon</p>
+                </div>
+                <div class="stat4">
+                    <p>Voiced by<br>@Model.agent.voiced_by</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateWinBar(winPercentage) {
+            const winBarFill = document.getElementById('winBarFill');
+            const winBarWidth = winPercentage * 3.5; // Assuming 100% is represented by 200px width
+            winBarFill.style.width = winBarWidth + 'px';
+        }
+
+        // Example win percentage (change this value as needed)
+        const winPercentage = @Model.agent.win_pct; // Represents 75% win rate
+
+        // Update the win bar
+        updateWinBar(winPercentage);
+
+    </script>
+</body>
+
+</html>

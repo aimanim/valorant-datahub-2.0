@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="~/css/loginStyling.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    @Html.Partial("/Views/shared/homepage_nav.cshtml")
+    <div class="container">
+        <div class="img-container">
+            <img src="~/Images/loginBackground.png">
+        </div>
+        <div class="text-container">
+            <h2>Login</h2>
+            <div class="item">
+                <input type="text" placeholder="Username">
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="item">
+                <input type="password" placeholder="Password">
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <div class="item">
+                <button>Login</button>
+            </div>
+            <div class="item">
+                <p>New here? <a href="#">Register Here!</a></p>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

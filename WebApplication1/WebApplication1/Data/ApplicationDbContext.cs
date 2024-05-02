@@ -18,6 +18,8 @@ namespace WebApplication1.Data
         public DbSet<Weapons> weapons { get; set; }
         public DbSet<SomeModel> somemodels { get; set; }
         public DbSet<GenericModel> genericmodel { get; set; }
+        public DbSet<AgentAbilities> agentAbilities { get; set; }
+        public DbSet<Agent_And_Abilities> agent_and_abilities { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -53,6 +55,8 @@ namespace WebApplication1.Data
             });
             modelBuilder.Entity<SomeModel>().HasNoKey();
             modelBuilder.Entity<GenericModel>().HasNoKey();
+            modelBuilder.Entity<AgentAbilities>().HasNoKey();
+            modelBuilder.Entity<Agent_And_Abilities>().HasNoKey();
         }
 
     }

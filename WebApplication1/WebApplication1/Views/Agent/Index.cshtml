@@ -1,0 +1,212 @@
+﻿@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            background-color: black;
+        }
+
+        .agent-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            padding: 50px;
+        }
+
+        .button {
+            text-align: center;
+            height: 310px;
+            width: 400px;
+            padding: 0px 20px;
+        }
+
+            .button img {
+                width: 100%;
+                height: auto;
+            }
+
+            .button p {
+                margin-top: -2px;
+                color: white;
+            }
+
+        .navbar {
+            background-color: #990000;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 8px;
+            color: white;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+
+            .navbar p {
+                margin: 15px 20px;
+            }
+
+        .items {
+            background-color: #990000;
+            width: 500px;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+            .items ul {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .items li,
+            .items li a {
+                list-style: none;
+                text-decoration: none;
+                color: white;
+            }
+    </style>
+</head>
+
+<body>
+    @Html.Partial("/Views/shared/homepage_nav.cshtml")
+    <div class="agent-container">
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Phoenix">
+            <img src="~/Images/phoenix.jpg" alt="Image 1">
+            </a>
+            <p>Phoenix</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Jett">
+            <img src="~/Images/jett.jpg" alt="Image 2">
+            </a>
+            <p>Jett</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Chamber">
+            <img src="~/Images/chamber.jpg" alt="Image 3">
+            </a>
+            <p>Chamber</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Omen">
+            <img src="~/Images/omen.jpg" alt="Image 4">
+            </a>
+            <p>Omen</p>
+        </div>
+
+
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Astra">
+            <img src="~/Images/astra.jpg" alt="Image 1">
+            </a>
+            <p>Astra</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Harbor">
+            <img src="~/Images/harbor.jpg" alt="Image 2">
+            </a>
+            <p>Harbor</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Yoru">
+            <img src="~/Images/yoru.jpg" alt="Image 3">
+            </a>
+            <p>Yoru</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Raze">
+            <img src="~/Images/raze.jpg" alt="Image 4">
+            </a>
+            <p>Raze</p>
+        </div>
+
+
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Neon">
+            <img src="~/Images/neon.jpg" alt="Image 1">
+            </a>
+            <p>Neon</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Breach">
+            <img src="~/Images/breach.jpg" alt="Image 2">
+            </a>
+            <p>Breach</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Brimstone">
+            <img src="~/Images/Brimstone.jpg" alt="Image 3">
+            </a>
+            <p>Brimstone</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Cypher">
+            <img src="~/Images/cypher.jpg" alt="Image 4">
+            </a>
+            <p>Cypher</p>
+        </div>
+
+
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Deadlock">
+            <img src="~/Images/deadlock.jpg" alt="Image 1">
+            </a>
+            <p>Deadlock</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Fade">
+            <img src="~/Images/fade.jpg" alt="Image 2">
+            </a>
+            <p>Fade</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Killjoy">
+            <img src="~/Images/killjoy.jpg" alt="Image 3">
+            </a>
+            <p>Killjoy</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Reyna">
+            <img src="~/Images/reyna.jpg" alt="Image 4">
+            </a>
+            <p>Reyna</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Clove">
+            <img src="~/Images/clove.jpg" alt="Image 1">
+            </a>
+            <p>Clove</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Sage">
+            <img src="~/Images/sage.jpg" alt="Image 2">
+            </a>
+            <p>Sage</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Sova">
+            <img src="~/Images/sova.jpg" alt="Image 3">
+            </a>
+            <p>Sova</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Viper">
+                <img src="~/Images/viper.jpg" alt="Image 3">
+                </a>
+            <p>Viper</p>
+        </div>
+        <div class="button">
+            <a href="/AgentDisplay/Index?option=Gekko"><img src="~/Images/gekko.jpg" alt="Image 3"></a>
+            <p>Gekko</p>
+        </div>
+    </div>
+</body>
+
+</html>
