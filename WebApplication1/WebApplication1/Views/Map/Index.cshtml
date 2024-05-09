@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
 }
+@model User
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,55 +60,55 @@
 </head>
 
 <body>
-    @Html.Partial("/views/shared/homepage_nav.cshtml")
+    @Html.Partial("/Views/Homepage_Nav/Index.cshtml")
     <div class="maps-container">
         <div class="button">
-            <a href="/MapDisplay/Index?option=ascent">
+            <a href="/MapDisplay/Index?option=ascent&Username=@Model.Username">
             <img src="~/Images/ascent-background.jpg" alt="Image 1"></a>
             <p>Ascent</p>
         </div>
         <div class="button">
-            <a href="/MapDisplay/Index?option=bind">
+            <a href="/MapDisplay/Index?option=bind&Username=@Model.Username">
             <img src="~/Images/bind-background.jpg" alt="Image 1"></a>
             <p>Bind</p>
         </div>
         <div class="button">
-            <a href="/MapDisplay/Index?option=breeze">
+            <a href="/MapDisplay/Index?option=breeze&Username=@Model.Username">
             <img src="~/Images/breeze-background.jpg" alt="Image 1"></a>
             <p>Breeze</p>
         </div>
         <div class="button">
-            <a href="/MapDisplay/Index?option=icebox">
+            <a href="/MapDisplay/Index?option=icebox&Username=@Model.Username">
             <img src="~/Images/icebox-background.jpg" alt="Image 1"></a>
             <p>Icebox</p>
         </div>
         <div class="button">
-            <a href="/MapDisplay/Index?option=lotus">
+            <a href="/MapDisplay/Index?option=lotus&Username=@Model.Username">
             <img src="~/Images/lotus-background.jpg" alt="Image 1"></a>
             <p>Lotus</p>
         </div>
         <div class="button">
-            <a href="/MapDisplay/Index?option=split">
+            <a href="/MapDisplay/Index?option=split&Username=@Model.Username">
             <img src="~/Images/split-background.jpg" alt="Image 1"></a>
             <p>Split</p>
         </div>
         <div class="button">
-            <a href="/MapDisplay/Index?option=sunset">
+            <a href="/MapDisplay/Index?option=sunset&Username=@Model.Username">
             <img src="~/Images/sunset-background.jpg" alt="Image 1"></a>
             <p>Sunset</p>
         </div>
         <div class="button">
-            <a href="/MapDisplay/Index?option=fracture">
+            <a href="/MapDisplay/Index?option=fracture&Username=@Model.Username">
             <img src="~/Images/fracture-background.jpg" alt="Image 1"></a>
             <p>Fracture</p>
         </div>
         <div class="button">
-            <a href="/MapDisplay/Index?option=pearl">
+            <a href="/MapDisplay/Index?option=pearl&Username=@Model.Username">
             <img src="~/Images/pearl-background.jpg" alt="Image 1"></a>
             <p>Pearl</p>
         </div>
         <div class="button">
-            <a href="/MapDisplay/Index?option=haven">
+            <a href="/MapDisplay/Index?option=haven&Username=@Model.Username">
             <img src="~/Images/haven-background.jpg" alt="Image 1"></a>
             <p>Haven</p>
         </div>

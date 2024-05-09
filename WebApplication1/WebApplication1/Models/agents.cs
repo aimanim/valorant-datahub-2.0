@@ -14,11 +14,8 @@ namespace WebApplication1.Models
         [Required]
         public string tier { get; set; }
         [Required]
-        public string role { get; set; }
-
-        [ForeignKey("Weapon")] 
+        public string role { get; set; } 
         public string? suited_weapon { get; set; }  
-        public virtual Weapons Weapon { get; set; }
         [Required]
         public string ultimate { get; set; }
         [Required]
@@ -26,5 +23,5 @@ namespace WebApplication1.Models
 		[Required]
 
 		public string description { get; set; }
-    }
+	}
 }

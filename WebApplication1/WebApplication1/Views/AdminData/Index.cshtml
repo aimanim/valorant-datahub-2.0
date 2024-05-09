@@ -4,41 +4,36 @@
 	void PrintTable(List<string> headers, string toDisplay)
 	{
 		Type TableType = Type.GetType("WebApplication1.Models." + toDisplay);
-								<thead>
-									<tr>
-										@{
-					foreach (var property in headers)
-					{
-
-																		<th>@property</th>
-					}
-										}
-
-									</tr>
-								</thead>
-								<tbody>
-									@{
-				int i = 0;
-									}
-									@foreach (var record in Model.GetType().GetProperty(toDisplay).GetValue(Model) as IEnumerable<dynamic>)
+		<thead>
+		<tr>
+		@{
+			foreach (var property in headers)
 			{
-										<tr>
-											<td>@(++i)</td>
-
-											@{
-						foreach (var property in TableType.GetProperties())
-						{
-							if (!property.GetGetMethod().IsVirtual)
-							{
-																				<td>@property.GetValue(record)</td>
-							}
-						}
-
-
-											}
-										</tr>
+				<th>@property</th>
 			}
-								</tbody>
+		}
+		</tr>
+		</thead>
+		<tbody>
+		@{
+			int i = 0;
+		}
+		@foreach (var record in Model.GetType().GetProperty(toDisplay).GetValue(Model) as IEnumerable<dynamic>)
+		{
+			<tr>
+			<td>@(++i)</td>
+			@{
+				foreach (var property in TableType.GetProperties())
+				{
+					if (!property.GetGetMethod().IsVirtual)
+					{
+						<td>@property.GetValue(record)</td>
+					}
+				}
+			}
+			</tr>
+		}
+		</tbody>
 	}
 }
 <!DOCTYPE html>
@@ -49,6 +44,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Table info</title>
 	<link rel="stylesheet" href="~/css/AdminDataStyling.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style>
 		
 	</style>
@@ -90,7 +86,8 @@
 						headers.Add("Voiced by");
 						headers.Add("Description");
 						break;
-					case "soloMatches":
+					case "solo_Matches":
+						toDisplay = "solo_Matches";
 						headers.Add("Serial No");
 						headers.Add("Match ID");
 						headers.Add("Kills");
@@ -100,7 +97,7 @@
 						headers.Add("Map Name");
 						headers.Add("Player ID");
 						break;
-					case "Weapons":
+					case "Weaponary":
 						headers.Add("Serial No");
 						headers.Add("Name");
 						headers.Add("Type");
@@ -111,6 +108,19 @@
 						headers.Add("Fire Mode");
 						headers.Add("Max range");
 						break;
+					case "Player":
+						headers.Add("Serial No");
+						headers.Add("Player ID");
+						headers.Add("Player Name");
+						headers.Add("Location ID");
+						headers.Add("Favorite Agent");
+						headers.Add("Gender");
+						headers.Add("Age");
+						headers.Add("MMR");
+						headers.Add("Total Kills");
+						headers.Add("Total Deaths");
+						break;
+
 				}
 				PrintTable(headers, toDisplay);
 
@@ -119,30 +129,167 @@
 	</div>
 		<div class="data" id="data">
 			@{
-
+				
 				for (i = 1; i < headers.Count; i++)
 				{
 					
 					string tb_name = "tb" + i;
 					string property = headers[i];
-								<div class="item">
-									<label for=@tb_name>@property: </label>
-									<input type="text" id=@tb_name />
-								</div>
+																					<div class="item">
+																						<label for=@tb_name>@property: </label>
+																						<input type="text" id=@tb_name />
+																					</div>
 				}
 			}
 		</div>
 		<div class="options">
 			<button onclick="hehe()">Clear</button>
-			<button>Insert</button>
-			<button>Update</button>
+			<button onclick="InsertRecord()">Insert</button>
+			<button onclick="UpdateRecord()">Update</button>
 			<button>Delete</button>
-			<button>Save changes</button>
-			<button>Undo</button>
+			<button onclick="Commit()">Save changes</button>
+			<button onclick="Rollback()">Undo</button>
 			
 		</div>
-</body>
+
 <script>
+	var btn_last;
+	function UpdateRecord() {
+		btn_last = "update";
+			var data = [];
+			var i = 1;
+			var tb_name;
+			var tb_value;
+			while (true) {
+				tb_name = "tb" + i;
+				var tb = document.getElementById(tb_name);
+				if (tb) {
+					tb_value = tb.value;
+					data.push(tb_value);
+					i++;
+				} else {
+					break;
+				}
+			}
+		var tempVar = "@Model.optionClicked";
+		event.preventDefault();
+			$.ajax({
+				url: '/AdminData/Update',
+				type: 'POST',
+				data: { data, tempVar },
+				success: function (response) {
+					alert(response);
+					var tbody = document.querySelector('#custom-table tbody');
+					var rows = tbody.querySelectorAll('tr');
+					var rowCount = rows.length;
+					var newRow = document.createElement('tr');
+					var index = document.createElement('td');
+					index.textContent = rowCount + 1;
+					newRow.appendChild(index);
+					// Create a new row for each item in the received data
+					data.forEach(function (item) {
+						var cell = document.createElement('td');
+						cell.textContent = item;
+						newRow.appendChild(cell);
+						
+					});
+					tbody.appendChild(newRow);
+				},
+				error: function (xhr, status, error) {
+					var errorMessage = xhr.responseText;
+					alert(errorMessage);
+				}
+			});
+	}
+	function InsertRecord(){
+			btn_last = "insert";
+			var data = [];
+			var i = 1;
+			var tb_name;
+			var tb_value;
+			while (true) {
+				tb_name = "tb" + i;
+				var tb = document.getElementById(tb_name);
+				if (tb) {
+					tb_value = tb.value;
+					data.push(tb_value);
+					i++;
+				} else {
+					break;
+				}
+			}
+		console.log(data);
+		var tempVar = "@Model.optionClicked";
+			event.preventDefault();
+			$.ajax({
+				url: '/AdminData/Insert',
+				type: 'POST',
+				data: { data, tempVar },
+				success: function (response) {
+					alert("Click on the save changes button to save your changes");
+					var tbody = document.querySelector('#custom-table tbody');
+					var rows = tbody.querySelectorAll('tr');
+					var rowCount = rows.length;
+					var newRow = document.createElement('tr');
+					var index = document.createElement('td');
+					index.textContent = rowCount + 1;
+					newRow.appendChild(index);
+					// Create a new row for each item in the received data
+					data.forEach(function (item) {
+						
+						var cell = document.createElement('td');
+						cell.textContent = item;
+						newRow.appendChild(cell);
+						
+					});
+					tbody.appendChild(newRow);
+				},
+				error: function (xhr, status, error) {
+					var errorMessage = xhr.responseText;
+					alert(errorMessage);
+				}
+			});
+	}
+	function Commit(){
+			var tbody = document.querySelector('#custom-table tbody');
+			var lastRow = tbody.lastElementChild;
+			var cells = lastRow.querySelectorAll('td');
+			var data = [];
+			
+			for (var i = 1; i < cells.length; i++) {
+				data.push(cells[i].textContent);
+			}
+		$.ajax({
+				url: '/AdminData/CommitTransaction',
+				type: 'POST',
+				data: { data, btn_last },
+				success: function(response){
+					alert(response);
+					location.reload();
+				},
+				error: function (xhr, status, error) {
+					var errorMessage = xhr.responseText;
+					alert(errorMessage);
+				}
+		});
+	}
+		function Rollback() {
+			$.ajax({
+				url: '/AdminData/RollbackTransaction',
+				type: 'POST',
+				data: {},
+				success: function (response) {
+					alert(response);
+					location.reload();
+				},
+				error: function (xhr, status, error) {
+					var errorMessage = xhr.responseText;
+					alert(errorMessage);
+				}
+			});
+		}
+
+
 	function hehe(){
 		var tbs = document.getElementsByTagName("input");
 		for (i = 0; i < tbs.length;i++){
@@ -187,4 +334,5 @@
 		});
 	}
 </script>
+</body>
 </html>

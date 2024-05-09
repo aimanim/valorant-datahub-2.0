@@ -1,7 +1,7 @@
 ﻿@{
     Layout = null;
 }
-
+@model User
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,16 +11,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/styling.css" />
     <title>Home Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
+   
+
 </head>
 
 <body>
-    @Html.Partial("/Views/shared/homepage_nav.cshtml")
+    @Html.Partial("/Views/Homepage_Nav/Index.cshtml")
     <div class="image_and_login">
         <h1 style="margin-top: 20px; padding: 20px;color: white;">Welcome to Valorant Datahub<br>Track your in-game stats today</h1>
             
         <div class="buttons">
-            <button class="login_button" onclick="hehe()">Login</button>
+            <button class="login_button" onclick="OpenLogin()">Login</button>
             <button class="register_button" onclick="OpenRegister()">Sign up</button>
         </div>
         <div class="imgcontainer">
@@ -34,25 +37,36 @@
         <button class="maps" onclick="OpenMaps()">View Maps</button>
         <button class="weapons">View Weapons</button>
         <button class="leaderboards" onclick="OpenLeaderboards()">View Leaderboards</button>
-        <button class="stats">View Stats</button>
+        <button class="stats" onclick="OpenStats()">View Stats</button>
     </div>
+    <script>
+        $(document).ready(function () {
 
-<script>
-    function OpenAgents(){
-        window.location.href= "/Agent/Index";
-    }
-    function OpenLeaderboards(){
-        window.location.href = "/Leaderboard/Index"
-    }
-    function OpenRegister(){
-        window.location.href = "/Signup/Index";
-    }
-    function hehe(){
-        window.location.href = "/Login/Index";
-    }
-    function OpenMaps(){
-        window.location.href = "Map/Index";
-    }
-</script>
+            var username = '@Model.Username';
+            console.log(username);
+            var dropbtnElement = $('#dropbtn');
+            dropbtnElement.text(username);
+
+        });
+        function OpenAgents() {
+            window.location.href = "/Agent/Index?username=@Model.Username";
+        }
+        function OpenLeaderboards() {
+            window.location.href = "/Leaderboard/Index?username=@Model.Username"
+        }
+        function OpenRegister() {
+            window.location.href = "/Signup/Index?username=@Model.Username";
+        }
+        function OpenLogin() {
+            window.location.href = "/Login/Index?username=@Model.Username";
+        }
+        function OpenMaps() {
+            window.location.href = "/Map/Index?username=@Model.Username";
+        }
+        function OpenStats() {
+            window.location.href = "/Stats/Index?username=@Model.Username";
+        }
+    </script>
+
 </body>
 </html>

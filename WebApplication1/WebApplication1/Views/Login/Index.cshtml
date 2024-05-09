@@ -10,11 +10,13 @@
     <title>Login</title>
     <link rel="stylesheet" href="~/css/loginStyling.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </head>
 
 <body>
-    @Html.Partial("/Views/shared/homepage_nav.cshtml")
+    @Html.Partial("/Views/Homepage_Nav/Index.cshtml")
     <div class="container">
         <div class="img-container">
             <img src="~/Images/loginBackground.png">
@@ -22,22 +24,73 @@
         <div class="text-container">
             <h2>Login</h2>
             <div class="item">
-                <input type="text" placeholder="Username">
+                <input type="text" id="usernameInput" placeholder="Username">
                 <i class='bx bxs-user'></i>
             </div>
             <div class="item">
-                <input type="password" placeholder="Password">
-                <i class='bx bxs-lock-alt'></i>
+                <input id="passwordInput" type="password" placeholder="Password">
+                <i class='bx bx-hide' id="pw_iconn" onclick="update_icon()" style="cursor: pointer;"></i>
             </div>
             <div class="item">
-                <button>Login</button>
+                <button id='submitButton'>Login</button>
             </div>
             <div class="item">
                 <p>New here? <a href="#">Register Here!</a></p>
             </div>
-
         </div>
+
     </div>
+    <script>
+        var a = 0;
+        function update_icon(){
+            console.log(a);
+            var hehe = document.getElementById('pw_iconn');
+            if(a == 1){
+                document.getElementById('passwordInput').type = 'password';
+                hehe.classList.remove('bx-show');
+                hehe.classList.add('bx-hide');
+                a = 0;
+            }
+            else{
+                a = 1;
+                document.getElementById('passwordInput').type = 'text';
+                hehe.classList.remove('bx-hide');
+                hehe.classList.add('bx-show');
+            }
+        }
+        $(document).ready(function () {
+            $('#submitButton').click(function () {
+                // Get the values of the username and password inputs
+                var username = $('#usernameInput').val();
+                var password = $('#passwordInput').val();
+                console.log("Username: ", username);
+                console.log("password: ", password);
+                // Make an AJAX request with the username and password as parameters
+                $.ajax({
+                    url: '/Login/Verify',
+                    type: 'POST',
+                    data: {
+                        username: username,
+                        password: password
+                    },
+                    success: function (data) {
+                        if(username === "admin"){
+                            window.location.href = "/Adminhome/Index";
+                        }
+                        else
+                            window.location.href = "/Homepage/Index?username=" + username;
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(xhr);
+                        console.log(status);
+                        console.log(error);
+                    }
+                });
+            });
+        });
+
+
+    </script>
 </body>
 
 </html>

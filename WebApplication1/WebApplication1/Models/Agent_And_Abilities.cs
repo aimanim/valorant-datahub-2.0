@@ -8,5 +8,7 @@ namespace WebApplication1.Models
         public agents agent {  get; set; }
         [NotMapped]
         public AgentAbilities abilities { get; set; }
+        [NotMapped]
+        public User user { get; set; }
     }
 }

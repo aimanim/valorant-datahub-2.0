@@ -1,7 +1,7 @@
 ﻿@{
     Layout = null;
 }
-
+@model RegistrationModel
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,43 +10,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/countries-list@2.11.0/dist/countries.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="~/css/signup.css">
     <title>Sign up </title>
 </head>
 
 <body>
+    <div class="body-content" id="blur">
     @Html.Partial("/Views/shared/homepage_nav.cshtml")
-    <div class="body-content">
-
+    
+    
         <div class="container">
-
             <h2>Sign Up</h2>
             <div class="login-form">
-                <form action="">
+                <form asp-action="Index" method="post">
                     <div class="form-item">
-                        <input type="text" name="userName" id="userName" placeholder="First Name">
-                        <input type="text" name="userName" id="userName" placeholder="Last Name">
+                       
+                        <input asp-for="FirstName" type="text"  class="required-input" placeholder ="First Name">
+                        <input asp-for="LastName" type="text"  placeholder="Last Name">
                     </div>
                     <div class="form-item-userid">
-                        <input type="text" name="userid" id="userid" placeholder="Username">
+                        <input asp-for="Username" type="text" id="userid" class="required-input" placeholder="Username">
                     </div>
                     <div class="form-item-items">
-                        <select id="gender" name="gender">
-                            <option value="" disabled selected hidden>Gender</option>
+                        <select asp-for="Gender" id="gender">
+                            <option value="" disabled selected hidden>Gender*</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
-                        <input type="text" id="dob" name="dob" placeholder="Date of birth" onfocus="(this.type='date')"
+                        <input asp-for="DateOfBirth" type="text" class="required-input" id="dob" placeholder="Date of birth" onfocus="(this.type='date')"
                                onblur="(this.type='text')">
                     </div>
                     <div class="form-item-location">
-                        <input type="text" id="country" name="country" placeholder="Country">
-                        <input type="text" id="city" name="city" placeholder="City">
+                        <input asp-for="Country" type="text" id="country" class="required-input" placeholder="Country">
+                        <input asp-for="City" type="text" id="city" class="required-input" placeholder="City">
                     </div>
                     <div class="fav-agent">
-                        <select id="agents" name="agents">
-                            <option value="" disabled selected hidden>Favorite agent</option>
+                        <select asp-for="Fav_agent" id="agents">
+                            <option value="" disabled selected hidden>Favorite agent*</option>
                             <option value="Jett">Jett</option>
                             <option value="Phoenix">Phoenix</option>
                             <option value="Reyna">Reyna</option>
@@ -74,25 +76,118 @@
                     </div>
 
                     <div class="form-item-password">
-                        <input type="password" name="passWord" id="password" placeholder="Password">
-                        <input type="password" name="passWord" id="confirmPassword" placeholder="Confirm Password">
+                        <input asp-for="Password" type="password" class="required-input" id="passwordInput" placeholder="Password">
+                        <i class='bx bx-hide' id="pw_iconn" onclick="update_icon()" style="cursor: pointer;"></i>
+                        <input asp-for="RePassword" type="password" class="required-input" id="passwordInput1" placeholder="Confirm Password">
+                        <i class='bx bx-hide' id="pw_iconn1" onclick="update_icon2()" style="cursor: pointer;"></i>
                     </div>
 
                     <div class="remember-box">
-                        <input type="checkbox" name="remember" id="remember">
+                        <input type="checkbox" class="required-input" name="remember" id="remember">
                         <p>I accept the Terms of Use & Privacy Policy</p>
                     </div>
                     <div class="form-btns">
-                        <button class="signup" type="submit">Sign Up</button>
+                        <button class="signup" onclick="Verify()">Sign Up</button>
                         <div class="options">
                             Already have an account? <a href="#">Login here</a>
                         </div>
                     </div>
+                    
                 </form>
                 <p>Copyright &copy; ValorantDatahub.com</p>
             </div>
         </div>
     </div>
+    <script>
+        var a = 0;
+        function update_icon() {
+            console.log(a);
+            var hehe = document.getElementById('pw_iconn');
+            if (a == 1) {
+                document.getElementById('passwordInput').type = 'password';
+                hehe.classList.remove('bx-show');
+                hehe.classList.add('bx-hide');
+                a = 0;
+            }
+            else {
+                a = 1;
+                document.getElementById('passwordInput').type = 'text';
+                hehe.classList.remove('bx-hide');
+                hehe.classList.add('bx-show');
+            }
+        }
+        var b = 0;
+        function update_icon2() {
+            var hehe = document.getElementById('pw_iconn1');
+            if (b == 1) {
+                document.getElementById('passwordInput1').type = 'password';
+                hehe.classList.remove('bx-show');
+                hehe.classList.add('bx-hide');
+                b = 0;
+            }
+            else {
+                b = 1;
+                document.getElementById('passwordInput1').type = 'text';
+                hehe.classList.remove('bx-hide');
+                hehe.classList.add('bx-show');
+            }
+        }
+        function toggle(){
+            var blur = document.getElementById('blur');
+            blur.classList.toggle('active');
+        }
+    </script>
+
+    <div class="SuccessContainer" id="popup">
+        <img src="~/Images/404-tick.png" />
+        <h2 id="heading">Thank You</h2>
+        <p>You have been registered successfully</p>
+        <p>
+            You can now use your username and password
+            to login.
+        </p>
+        <button type="button" onclick="closePopup()">OK</button>
+    </div>
+    
+    
+    <script>
+        function addAsteriskToPlaceholders() {
+            var requiredInputs = document.querySelectorAll('.required-input');
+
+            requiredInputs.forEach(function (input) {
+                var placeholder = input.getAttribute('placeholder');
+                input.setAttribute('placeholder', placeholder + '*'); 
+            });
+        }
+        addAsteriskToPlaceholders();
+        let popup = document.getElementById("popup");
+        
+        function closePopup() {
+            popup.classList.remove("open-popup");
+            window.location.href = '/Login/Index';
+        }function openPopup() {
+            toggle();
+            document.getElementById('heading').innerText = 'Welcome @(Model != null ? Model.Username : "")!';
+            popup.classList.add("open-popup");
+        }
+        function Verify() {
+            event.preventDefault();
+            console.log("Gonna sendthe query");
+            $.ajax({
+                url: '/Signup/Verify',
+                type: 'POST',
+                data: $('form').serialize(),
+                success: function (response) {
+                    openPopup();
+                },
+                error: function (xhr, status, error) {
+                    var errorMessage = xhr.responseText; 
+                    alert(errorMessage);
+                }
+            });
+        }
+    </script>
+    
 </body>
 
 </html>

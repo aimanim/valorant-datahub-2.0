@@ -92,8 +92,8 @@
                 <li><a href="/Adminhome/Index">Home</a></li>
                 <li><a href="#" onclick="OpenAgents()">Agents</a></li>
                 <li><a href="#">Maps</a></li>
-                <li><a href="/AdminData/Index?option=Weapons">Weapons</a></li>
-                <li><a href="#">Users</a></li>
+                <li><a href="/AdminData/Index?option=Weaponary">Weapons</a></li>
+                <li><a href="/AdminData/Index?option=Player">Users</a></li>
                 <li><a href="#">Locations</a></li>
                 <li><a href="#">Teams</a></li>
                 <li class="dropdown">
@@ -126,7 +126,7 @@
         window.location.href = "/AdminData/Index?option=agents";
     }
     function OpenSoloMatches() {
-        window.location.href = "/AdminData/Index?option=soloMatches";
+            window.location.href = "/AdminData/Index?option=" + encodeURIComponent("solo_Matches");
     }
     </script>
         </body>

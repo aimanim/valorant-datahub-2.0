@@ -1,6 +1,7 @@
 ﻿@{
 	Layout = null;
 }
+@model User
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,31 +72,32 @@
                 color: white;
             }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
-    @Html.Partial("/Views/shared/homepage_nav.cshtml")
+    @Html.Partial("/Views/Homepage_Nav/Index.cshtml")
     <div class="agent-container">
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Phoenix">
+            <a href="/AgentDisplay/Index?option=Phoenix&Username=@Model.Username">
             <img src="~/Images/phoenix.jpg" alt="Image 1">
             </a>
             <p>Phoenix</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Jett">
+            <a href="/AgentDisplay/Index?option=Jett&Username=@Model.Username">
             <img src="~/Images/jett.jpg" alt="Image 2">
             </a>
             <p>Jett</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Chamber">
+            <a href="/AgentDisplay/Index?option=Chamber&Username=@Model.Username">
             <img src="~/Images/chamber.jpg" alt="Image 3">
             </a>
             <p>Chamber</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Omen">
+            <a href="/AgentDisplay/Index?option=Omen&Username=@Model.Username">
             <img src="~/Images/omen.jpg" alt="Image 4">
             </a>
             <p>Omen</p>
@@ -103,25 +105,25 @@
 
 
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Astra">
+            <a href="/AgentDisplay/Index?option=Astra&Username=@Model.Username">
             <img src="~/Images/astra.jpg" alt="Image 1">
             </a>
             <p>Astra</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Harbor">
+            <a href="/AgentDisplay/Index?option=Harbor&Username=@Model.Username">
             <img src="~/Images/harbor.jpg" alt="Image 2">
             </a>
             <p>Harbor</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Yoru">
+            <a href="/AgentDisplay/Index?option=Yoru&Username=@Model.Username">
             <img src="~/Images/yoru.jpg" alt="Image 3">
             </a>
             <p>Yoru</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Raze">
+            <a href="/AgentDisplay/Index?option=Raze&Username=@Model.Username">
             <img src="~/Images/raze.jpg" alt="Image 4">
             </a>
             <p>Raze</p>
@@ -129,25 +131,25 @@
 
 
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Neon">
+            <a href="/AgentDisplay/Index?option=Neon&Username=@Model.Username">
             <img src="~/Images/neon.jpg" alt="Image 1">
             </a>
             <p>Neon</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Breach">
+            <a href="/AgentDisplay/Index?option=Breach&Username=@Model.Username">
             <img src="~/Images/breach.jpg" alt="Image 2">
             </a>
             <p>Breach</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Brimstone">
+            <a href="/AgentDisplay/Index?option=Brimstone&Username=@Model.Username">
             <img src="~/Images/Brimstone.jpg" alt="Image 3">
             </a>
             <p>Brimstone</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Cypher">
+            <a href="/AgentDisplay/Index?option=Cypher&Username=@Model.Username">
             <img src="~/Images/cypher.jpg" alt="Image 4">
             </a>
             <p>Cypher</p>
@@ -155,58 +157,67 @@
 
 
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Deadlock">
+            <a href="/AgentDisplay/Index?option=Deadlock&Username=@Model.Username">
             <img src="~/Images/deadlock.jpg" alt="Image 1">
             </a>
-            <p>Deadlock</p>
-        </div>
+            <p>Deadlock</p></div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Fade">
+            <a href="/AgentDisplay/Index?option=Fade&Username=@Model.Username">
             <img src="~/Images/fade.jpg" alt="Image 2">
             </a>
             <p>Fade</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Killjoy">
+            <a href="/AgentDisplay/Index?option=Killjoy&Username=@Model.Username">
             <img src="~/Images/killjoy.jpg" alt="Image 3">
             </a>
             <p>Killjoy</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Reyna">
+            <a href="/AgentDisplay/Index?option=Reyna&Username=@Model.Username">
             <img src="~/Images/reyna.jpg" alt="Image 4">
             </a>
             <p>Reyna</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Clove">
+            <a href="/AgentDisplay/Index?option=Clove&Username=@Model.Username">
             <img src="~/Images/clove.jpg" alt="Image 1">
             </a>
             <p>Clove</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Sage">
+            <a href="/AgentDisplay/Index?option=Sag&Username=@Model.Username">
             <img src="~/Images/sage.jpg" alt="Image 2">
             </a>
             <p>Sage</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Sova">
+            <a href="/AgentDisplay/Index?option=Sova&Username=@Model.Username">
             <img src="~/Images/sova.jpg" alt="Image 3">
             </a>
             <p>Sova</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Viper">
+            <a href="/AgentDisplay/Index?option=Viper&Username=@Model.Username">
                 <img src="~/Images/viper.jpg" alt="Image 3">
                 </a>
             <p>Viper</p>
         </div>
         <div class="button">
-            <a href="/AgentDisplay/Index?option=Gekko"><img src="~/Images/gekko.jpg" alt="Image 3"></a>
+            <a href="/AgentDisplay/Index?option=Gekko&Username=@Model.Username"><img src="~/Images/gekko.jpg" alt="Image 3"></a>
             <p>Gekko</p>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+
+            var username = '@Model.Username';
+            console.log(username);
+            var dropbtnElement = $('#dropbtn');
+            dropbtnElement.text(username);
+
+        });
+    </script>
 </body>
 
 </html>

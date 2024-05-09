@@ -9,15 +9,20 @@ namespace WebApplication1.Controllers
     public class WeaponDisplayController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private User user;
         public WeaponDisplayController(ApplicationDbContext db)
         {
             _db = db;
+            user = new User();
+            user.Username = "Guest Mode";
         }
-        public IActionResult Index(string option)
+        public IActionResult Index(string option,string Username = "Guest Mode")
         {
+            user.Username = Username;
             var query = "SELECT * FROM weaponary WHERE weapon_name = @Name";
-            var data = _db.Set<Weapons>().FromSqlRaw(query, new SqlParameter("@Name", option)).ToList();
-            return View(data[0]);
+            List<Weaponary> w = _db.Set<Weaponary>().FromSqlRaw(query, new SqlParameter("@Name", option)).ToList();
+            w[0].user = user;
+            return View(w[0]);
         }
     }
 }

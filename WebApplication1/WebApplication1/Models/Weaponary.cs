@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication1.Models
 {
-    public class Weapons
+    public class Weaponary
     {
         [Key]
         public string Weapon_Name { get; set; }
@@ -15,5 +15,7 @@ namespace WebApplication1.Models
         public float? Reload_Speed { get; set; }
         public string? Fire_Mode { get; set; }
         public int? Max_Range { get; set; }
+        [NotMapped]
+        public User user { get; set; }
     }
 }
