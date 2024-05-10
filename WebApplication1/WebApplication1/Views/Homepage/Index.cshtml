@@ -64,7 +64,9 @@
             window.location.href = "/Map/Index?username=@Model.Username";
         }
         function OpenStats() {
-            window.location.href = "/Stats/Index?username=@Model.Username";
+            if ('@Model.Username' != "Guest Mode")
+               window.location.href = "/Stats/Index?username=@Model.Username";
+            
         }
     </script>
 

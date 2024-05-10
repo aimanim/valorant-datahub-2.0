@@ -4,36 +4,36 @@
 	void PrintTable(List<string> headers, string toDisplay)
 	{
 		Type TableType = Type.GetType("WebApplication1.Models." + toDisplay);
-		<thead>
-		<tr>
-		@{
+						<thead>
+						<tr>
+						@{
 			foreach (var property in headers)
 			{
-				<th>@property</th>
+												<th>@property</th>
 			}
-		}
-		</tr>
-		</thead>
-		<tbody>
-		@{
+						}
+						</tr>
+						</thead>
+						<tbody>
+						@{
 			int i = 0;
-		}
-		@foreach (var record in Model.GetType().GetProperty(toDisplay).GetValue(Model) as IEnumerable<dynamic>)
+						}
+						@foreach (var record in Model.GetType().GetProperty(toDisplay).GetValue(Model) as IEnumerable<dynamic>)
 		{
-			<tr>
-			<td>@(++i)</td>
-			@{
+							<tr>
+							<td>@(++i)</td>
+							@{
 				foreach (var property in TableType.GetProperties())
 				{
 					if (!property.GetGetMethod().IsVirtual)
 					{
-						<td>@property.GetValue(record)</td>
+														<td>@property.GetValue(record)</td>
 					}
 				}
-			}
-			</tr>
+							}
+							</tr>
 		}
-		</tbody>
+						</tbody>
 	}
 }
 <!DOCTYPE html>
@@ -121,6 +121,20 @@
 						headers.Add("Total Deaths");
 						break;
 
+					case "Location":
+						headers.Add("Serial No");
+						headers.Add("Location ID");
+						headers.Add("Country");
+						headers.Add("City");
+						break;
+					case "Maps":
+						headers.Add("Serial No");
+						headers.Add("Map name");
+						headers.Add("Spike sites");
+						headers.Add("Suited Weapon");
+						headers.Add("Location ID");
+						headers.Add("Description");
+						break;
 				}
 				PrintTable(headers, toDisplay);
 
@@ -129,16 +143,15 @@
 	</div>
 		<div class="data" id="data">
 			@{
-				
 				for (i = 1; i < headers.Count; i++)
 				{
 					
 					string tb_name = "tb" + i;
 					string property = headers[i];
-																					<div class="item">
-																						<label for=@tb_name>@property: </label>
-																						<input type="text" id=@tb_name />
-																					</div>
+									<div class="item">
+										<label for=@tb_name>@property: </label>
+										<input type="text" id=@tb_name />
+									</div>
 				}
 			}
 		</div>
@@ -146,7 +159,7 @@
 			<button onclick="hehe()">Clear</button>
 			<button onclick="InsertRecord()">Insert</button>
 			<button onclick="UpdateRecord()">Update</button>
-			<button>Delete</button>
+			<button onclick="DeleteRecord()">Delete</button>
 			<button onclick="Commit()">Save changes</button>
 			<button onclick="Rollback()">Undo</button>
 			
@@ -154,6 +167,48 @@
 
 <script>
 	var btn_last;
+	function DeleteRecord(){
+		btn_last = "delete";
+			var data = [];
+			var i = 1;
+			var tb_name;
+			var tb_value;
+			while (true) {
+				tb_name = "tb" + i;
+				var tb = document.getElementById(tb_name);
+				if (tb) {
+					tb_value = tb.value;
+					data.push(tb_value);
+					i++;
+				} else {
+					break;
+				}
+			}
+		var pk = data[0];
+		var tempVar = "@Model.optionClicked";
+		event.preventDefault();
+		$.ajax({
+				url: '/AdminData/Delete',
+			type: 'POST',
+			data: { pk, tempVar },
+			success: function (response) {
+				alert(response);
+					var tbody = document.querySelector('#custom-table tbody');
+					var rows = tbody.querySelectorAll('tr');
+				for (var i = 0; i < rows.length; i++) {
+					var cell = rows[i].cells[1]; // Assuming the second column (index 1) contains the unique value
+					if (cell.textContent.trim() === data[0]) {
+						rows[i].style.display = "none";
+						break; // Assuming each unique value appears only once
+					}
+				}
+			},
+			error: function (xhr, status, error) {
+				var errorMessage = xhr.responseText;
+				alert(errorMessage);
+			}
+		});
+	}
 	function UpdateRecord() {
 		btn_last = "update";
 			var data = [];

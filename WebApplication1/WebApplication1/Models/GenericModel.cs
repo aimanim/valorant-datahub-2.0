@@ -8,6 +8,6 @@
         public List<Weaponary> Weaponary { get; set; }
         public List<Maps> Maps { get; set; }
         public List<Player> Player{ get; set; }
-        
+        public List<Location> Location { get; set; }
     }
 }

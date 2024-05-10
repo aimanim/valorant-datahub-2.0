@@ -11,7 +11,6 @@
         public int Wins { get; set; }
         public int Total_Matches { get; set; }
         public string fav_agent_role { get; set; }
-
         public Dictionary<string, Tuple<int, int>> top_maps { get; set; }
         
         

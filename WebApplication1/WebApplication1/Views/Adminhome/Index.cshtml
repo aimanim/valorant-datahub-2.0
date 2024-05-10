@@ -11,6 +11,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="~/css/admin.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.8/vue.min.js'></script>
 </head>
 
 <body>
@@ -69,11 +70,66 @@
         </div>
         <div class="insights">
             <h1>Insights</h1>
+            <div id="app">
+                <progress-ring :radius="100" :progress="progress" :stroke="5"></progress-ring>
+                <h3>Registered users</h3>
+            </div>
+
+            <template id="progress-ring-template">
+                <svg :height="radius * 2" :width="radius * 2">
+                    <circle stroke="red"
+                            fill="transparent"
+                            :stroke-dasharray="circumference + ' ' + circumference"
+                            :style="{ strokeDashoffset, transition: 'stroke-dashoffset 1s ease-in-out' }"
+                            :stroke-width="stroke"
+                            :r="normalizedRadius"
+                            :cx="radius"
+                            :cy="radius" />
+                    <text x="100" y="110" text-anchor="middle"
+                          font-size="50" fill="red">{{i}}</text>
+                </svg>
+            </template>
             <canvas id="barChart" width="500" height="500"></canvas>
-            
         </div>
     </div>
     <script>
+        Vue.component('progress-ring', {
+            props: ['radius', 'progress', 'stroke'],
+            template: '#progress-ring-template',
+            data() {
+                const normalizedRadius = this.radius - this.stroke * 2;
+                const circumference = normalizedRadius * 2 * Math.PI;
+
+                return {
+                    normalizedRadius,
+                    circumference
+                };
+            },
+            computed: {
+                i: function () {
+                    let result = 31 * (this.progress / 100);
+                    result = Math.round(result);
+                    return result;
+                },
+                strokeDashoffset() {
+                    return (1 - this.progress / 100) * this.circumference;
+                }
+            }
+        });
+        new Vue({
+            el: '#app',
+            data: {
+                progress: 0
+            },
+            mounted() {
+                // Simulate loading progress
+                setInterval(() => {
+                    if (this.progress < 100) {
+                        this.progress += 1;
+                    }
+                }, 15);
+            }
+        });
         function Logout() {
             var dropdown = document.getElementById("mydropdown");
             var selectedValue = dropdown.value;

@@ -75,6 +75,7 @@ body {
     margin-left: 10px;
 }
 .insights #barChart {
+    margin-top: 50px;
     background-color: black;
     color: white;
     border: 2px solid purple; /* Replace with your desired purple shade */
@@ -89,3 +90,11 @@ body {
 .item:hover {
     transform: scale(1.05);
 }
+#app {
+    margin-left: 150px;
+}
+
+    #app h3 {
+        margin-top: 3px;
+        margin-left: 30px;
+    }

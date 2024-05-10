@@ -158,7 +158,9 @@
         padding: 15px;
         border-radius: 20px;
     }
-
+    #rank img{
+        margin-left: 30px;
+    }
     #kd {
         background: rgb(113,27,27);
         background: linear-gradient(185deg, rgba(113,27,27,1) 0%, rgba(150,0,0,1) 66%, rgba(113,27,27,1) 100%);
@@ -175,6 +177,10 @@
     }
 </style>
 <body>
+    @{
+        Console.WriteLine("For icon retrieval, " + (@Model.player.Fav_agent) + "_icon.png");
+        Console.WriteLine("For rank retrieval, " + (@Model.rank.Substring(0, @Model.rank.IndexOf(' '))) + ".png");
+    }
     <div id="partialContainer">
         <header>
             <nav class="navbar">
@@ -238,7 +244,9 @@
                 <td>
                     <div id="rank">
                         <div style="font-size:20px;">Current Rank</div>
-                        <p>@Model.rank</p> <div style="position: absolute; top: 160px; left: 135px;"><img src="rank.png" alt="not found" height="30" /></div>
+                        <p>@Model.rank</p> <div style="position: absolute; top: 160px; left: 135px;">
+                            <img src="~/Images/@(Model.rank.Substring(0, @Model.rank.IndexOf(' '))).png" alt="not found" height="30" />
+                            </div>
                     </div>
                 </td>
                 <td>
@@ -271,8 +279,10 @@
                 <td colspan="2"><h3>Most Played Role:</h3></td>
             </tr>
             <tr style="padding-top:2px; margin-top:0px;">
-                <td colspan="2" style="padding-left:20px;">@Model.player.Fav_agent <div style="position: absolute; top: 320px; left: 260px;"><img src="Images\sage.png" alt="not found" width="60px" /></div></td>
+                <td colspan="2" style="padding-left:20px;">@Model.player.Fav_agent <div style="position: absolute; top: 320px; left: 260px;">
+                    <img src="~/Images/@(Model.player.Fav_agent)_icon.png" alt="not found" width="60px" /></div></td>
                 <td colspan="2">@Model.fav_agent_role</td>
+               
             </tr>
         </TABLE>
     </div>

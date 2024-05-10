@@ -61,10 +61,10 @@ namespace WebApplication1.Controllers
                         stats.rank = command.ExecuteScalar().ToString();
 
                     }
-                    query = $"select pid,count(1)," +
-                        $"(select count(1) from solo_matches group by pid,result having result = 'Lost' and pid = s1.pid)," +
-                        $"(select count(1) from solo_matches group by pid having pid=s1.pid)" +
-                        $"from solo_matches s1 group by pid,result having result = 'Won' and pid = {stats.user.player_id}";
+                    query = $"select Player_ID,count(1)," +
+                        $"(select count(1) from solo_matches group by Player_ID,result having result = 'Lost' and Player_ID = s1.Player_ID)," +
+                        $"(select count(1) from solo_matches group by Player_ID having Player_ID=s1.Player_ID)" +
+                        $"from solo_matches s1 group by Player_ID,result having result = 'Won' and Player_ID = {stats.user.player_id}";
                     using (SqlCommand command = new SqlCommand(query, con))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -81,7 +81,7 @@ namespace WebApplication1.Controllers
                             }
                         }
                     }
-                    List<String> MapNames = new List<string>();
+                    List<string> MapNames = new List<string>();
                     stats.top_maps = new Dictionary<string, Tuple<int, int>>();
                     MapNames.Add("Bind");MapNames.Add("Breeze");MapNames.Add("Lotus");MapNames.Add("Ascent");MapNames.Add("Fracture");
                     MapNames.Add("Haven");MapNames.Add("Icebox");MapNames.Add("Pearl");MapNames.Add("Split");MapNames.Add("Sunset");
@@ -90,9 +90,9 @@ namespace WebApplication1.Controllers
                         stats.top_maps.Add(map, Tuple.Create(0, 0));
                     }
                     query = $"select map_name,count(1)," +
-                        $"(select count(1) from solo_matches where map_name = s1.map_name and pid = s1.pid and result = 'Won')," +
-                        $"(select count(1) from solo_matches where map_name = s1.map_name and pid = s1.pid and result = 'Lost')" +
-                        $"from solo_matches s1 group by map_name,pid having pid={stats.player.Pid};";
+                        $"(select count(1) from solo_matches where map_name = s1.map_name and Player_ID = s1.Player_ID and result = 'Won')," +
+                        $"(select count(1) from solo_matches where map_name = s1.map_name and Player_ID = s1.Player_ID and result = 'Lost')" +
+                        $"from solo_matches s1 group by map_name,Player_ID having Player_ID={stats.player.Pid};";
                     using (SqlCommand command = new SqlCommand(query, con))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -112,8 +112,6 @@ namespace WebApplication1.Controllers
                     Console.WriteLine($"Error: {ex.Message}");
                 }
             }
-            
-            
             return View(stats);
         }
     }

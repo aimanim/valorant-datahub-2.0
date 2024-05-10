@@ -51,9 +51,15 @@ namespace WebApplication1.Controllers
 					break;
                 case "Maps":
 					ViewModel.Maps = _db.maps.ToList();
+					HttpContext.Session.SetString("PrimaryAttribute", "Map_Name");
 					break;
                 case "Player":
 					ViewModel.Player = _db.players.ToList();
+					HttpContext.Session.SetString("PrimaryAttribute", "Pid");
+					break;
+				case "Location":
+					ViewModel.Location = _db.locations.ToList();
+					HttpContext.Session.SetString("PrimaryAttribute", "Location_id");
 					break;
 			}
             return View(ViewModel);
@@ -151,7 +157,14 @@ namespace WebApplication1.Controllers
 					a= _db.weapons.Count(a => a.Weapon_Name == data[0]);
 					b= _db.weapons.FirstOrDefault(a => a.Weapon_Name == data[0]);
 					break;
-
+				case "Location":
+					a = _db.locations.Count(l => l.Location_id == int.Parse(data[0]));
+					b = _db.locations.FirstOrDefault(l => l.Location_id == int.Parse(data[0]));
+					break;
+				case "Maps":
+					a = _db.maps.Count(m => m.Map_Name == data[0]);
+					b = _db.maps.FirstOrDefault(m => m.Map_Name == data[0]);
+					break;
 			}
 			res = new Tuple<object, int>(b, a);
 			return res; 
@@ -199,12 +212,17 @@ namespace WebApplication1.Controllers
 			}
 		}
 		[HttpPost]
-		public IActionResult Delete(List<string> data, string tempVar)
+		public IActionResult Delete(string pk,string tempVar)
 		{
 			string? transactionState = HttpContext.Session.GetString("TransactionState");
 			if (transactionState != null && transactionState == "Active")
 				return BadRequest("Please commit your previous transaction first");
-			return Ok("Record deleted successfully");
+			HttpContext.Session.SetString("PrimaryAttributeValue", $"{pk}");
+			Console.WriteLine("Primary key attribute, primary key: " + HttpContext.Session.GetString("PrimaryAttribute") + "," + pk);
+			HttpContext.Session.SetString("TransactionState", "Active");
+			HttpContext.Session.SetString("CurrentTable", $"{tempVar}");
+
+			return Ok("Press Commit to view your changes");
 		}
 		private string GenerateQuery(string option,string tempVar,List<string> data)
 		{
@@ -251,6 +269,11 @@ namespace WebApplication1.Controllers
 					}
 					query = query.Substring(0, query.Length - 1);
 					query += $" where {attributes[0]} = '{data[0]}'";
+					break;
+				case "delete":
+					string pk_title = HttpContext.Session.GetString("PrimaryAttribute");
+					string pk_value = HttpContext.Session.GetString("PrimaryAttributeValue");
+					query = $"delete from {tempVar} where {pk_title} = '{pk_value}'";
 					break;
 			}
 			return query;

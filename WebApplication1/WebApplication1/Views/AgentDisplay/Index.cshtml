@@ -122,11 +122,11 @@
         }
 
         .ability_img {
-            background-color: red;
-            height: 100px;
-            width: 650px;
-            display: block;
+            background-color: #0f1923;
+            height: 50px;
+            min-width: 70px;
             margin-top: 5px;
+            display: block;
         }
 
         .container2 {
@@ -138,14 +138,15 @@
             flex-direction: column;
         }
 
-            .container2 .abilityQ,
             .abilityE,
+            .abilityQ,
             .abilityC,
             .abilityX {
                 margin-top: 10px;
                 margin: 5px;
                 background-color: #0f1923;
                 display: flex;
+                justify-content: space-between;
                 color: white;
                 height: 300px;
             }
@@ -271,7 +272,7 @@
         <div class="container2">
             <div class=abilityQ>
                 <div class="ability_img">
-                    <img src="~/Images/@Model.agent.agent_name-Q.jpg" alt="Ability's icon">
+                    <img src="~/Images/@Model.agent.agent_name-Q.png" alt="Ability's icon">
                 </div>
                 <div class="ability_text">
                     <div class="ability_text_first_row">
@@ -285,7 +286,7 @@
             </div>
             <div class=abilityE>
                 <div class="ability_img">
-                    <img src="~/Images/@Model.agent.agent_name-E.jpg" alt="Ability's icon">
+                    <img src="~/Images/@(Model.agent.agent_name)-E.png" alt="Ability's icon">
                 </div>
                 <div class="ability_text">
                     <div class="ability_text_first_row">
@@ -299,7 +300,7 @@
             </div>
             <div class=abilityC>
                 <div class="ability_img">
-                    <img src="~/Images/@Model.agent.agent_name-C.jpg" alt="Ability's icon">
+                    <img src="~/Images/@Model.agent.agent_name-C.png" alt="Ability's icon">
                 </div>
                 <div class="ability_text">
                     <div class="ability_text_first_row">
@@ -313,7 +314,7 @@
             </div>
             <div class=abilityX>
                 <div class="ability_img">
-                    <img src="~/Images/@Model.agent.agent_name-X.jpg" alt="Ability's icon">
+                    <img src="~/Images/@Model.agent.agent_name-X.png" alt="Ability's icon">
                 </div>
                 <div class="ability_text">
                     <div class="ability_text_first_row">
@@ -330,7 +331,7 @@
             <h2>@Model.agent.agent_name : Insights</h2>
             <div class="icon_pickpct">
                 <div class="icon-container">
-                    <img src="~/Images/@Model.agent.agent_name-icon.jpg" alt="agent's icon">
+                    <img src="~/Images/@(Model.agent.agent_name)_icon.png" alt="agent's icon">
                 </div>
                 <p>Pick Rate<br>@Model.agent.pick_pct %</p>
             </div>
