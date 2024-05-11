@@ -9,5 +9,9 @@
         public List<Maps> Maps { get; set; }
         public List<Player> Player{ get; set; }
         public List<Location> Location { get; set; }
+        public List<Teams> Teams{ get; set; }
+        public List<Matches> Matches{ get; set; }
+        
+    
     }
 }

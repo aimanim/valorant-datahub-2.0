@@ -10,7 +10,6 @@ using System.Net;
 using System.Reflection;
 using WebApplication1.Data;
 using WebApplication1.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApplication1.Controllers
 {
@@ -22,7 +21,6 @@ namespace WebApplication1.Controllers
         {
             _db = db;
 			headers = new List<string>();
-			
 		}
         public IActionResult Index(string option)
         {
@@ -61,61 +59,83 @@ namespace WebApplication1.Controllers
 					ViewModel.Location = _db.locations.ToList();
 					HttpContext.Session.SetString("PrimaryAttribute", "Location_id");
 					break;
+				case "Teams":
+					ViewModel.Teams = _db.teams.ToList();
+					HttpContext.Session.SetString("PrimaryAttribute", "Team_id");
+					break;
+				case "Matches":
+					ViewModel.Matches = _db.matches.ToList();
+					HttpContext.Session.SetString("PrimaryAttribute", "Match_id");
+					break;
 			}
             return View(ViewModel);
         }
 		[HttpPost]
         public IActionResult Insert(List<string> data, string tempVar)	//keep the variable names same as the one's sent using AJAX query
         {
-			string? transactionState = HttpContext.Session.GetString("TransactionState");
-			if (transactionState == "Active")
-				return BadRequest("Please commit your previous transaction first");
-			string query = $"insert into {tempVar} values (";
-			if (tempVar == "agents")
+			if(tempVar == "solo_Matches" || tempVar == "Matches")
 			{
-				for (int i = 0; i < data.Count-2; i++)
-				{
-					query += $"'{data[i]}'";
-					if (i < data.Count - 1)
-					{
-						query += ",";
-					}
-				}
-				query += $"'{data[data.Count-1]}'";
-				query += ",";
-				query += $"'{data[data.Count-2]}')";
-				
-			}
-			else
-			{
-				for (int i = 0; i < data.Count; i++)
-				{
-					query += $"'{data[i]}'";
-					if (i < data.Count - 1)
-					{
-						query += ",";
-					}
-				}
-				query += ")";
-			}
-				
-            Console.WriteLine("The query: " + query);
-			
-			try
-            {
-				_db.Database.ExecuteSqlRaw(query);
-				string temp = HttpContext.Session.GetString("PrimaryAttribute");
+				string? transactionState = HttpContext.Session.GetString("TransactionState");
+				if (transactionState == "Active")
+					return BadRequest("Please commit your previous transaction first");
 				HttpContext.Session.SetString("TransactionState", "Active");
 				HttpContext.Session.SetString("LastPK", $"{data[0]}");
 				HttpContext.Session.SetString("CurrentTable", $"{tempVar}");
-				query = $"delete from {tempVar} where {temp} = '{data[0]}'";
-				_db.Database.ExecuteSqlRaw(query);
-				return Ok("Success");
+				return Ok("Press commit to see your changes");
 			}
-            catch(Exception ex)
-            {
-				return BadRequest(ex.Message);
-            }
+			else
+			{
+				string? transactionState = HttpContext.Session.GetString("TransactionState");
+				if (transactionState == "Active")
+					return BadRequest("Please commit your previous transaction first");
+				string query = $"insert into {tempVar} values (";
+				if (tempVar == "agents")
+				{
+					for (int i = 0; i < data.Count - 2; i++)
+					{
+						query += $"'{data[i]}'";
+						if (i < data.Count - 1)
+						{
+							query += ",";
+						}
+					}
+					query += $"'{data[data.Count - 1]}'";
+					query += ",";
+					query += $"'{data[data.Count - 2]}')";
+
+				}
+				else
+				{
+					for (int i = 0; i < data.Count; i++)
+					{
+						query += $"'{data[i]}'";
+						if (i < data.Count - 1)
+						{
+							query += ",";
+						}
+					}
+					query += ")";
+				}
+
+				Console.WriteLine("The query: " + query);
+
+				try
+				{
+					_db.Database.ExecuteSqlRaw(query);
+					string temp = HttpContext.Session.GetString("PrimaryAttribute");
+					HttpContext.Session.SetString("TransactionState", "Active");
+					HttpContext.Session.SetString("LastPK", $"{data[0]}");
+					HttpContext.Session.SetString("CurrentTable", $"{tempVar}");
+					query = $"delete from {tempVar} where {temp} = '{data[0]}'";
+					_db.Database.ExecuteSqlRaw(query);
+					return Ok("Success");
+				}
+				catch (Exception ex)
+				{
+					return BadRequest(ex.Message);
+				}
+			}
+			
 			
         }
 		
@@ -165,6 +185,15 @@ namespace WebApplication1.Controllers
 					a = _db.maps.Count(m => m.Map_Name == data[0]);
 					b = _db.maps.FirstOrDefault(m => m.Map_Name == data[0]);
 					break;
+				case "Teams":
+					a = _db.teams.Count(m => m.Team_id == int.Parse(data[0]));
+					b = _db.teams.FirstOrDefault(m => m.Team_id == int.Parse(data[0]));
+					break;
+				case "Matches":
+					a = _db.matches.Count(m => m.Match_id == int.Parse(data[0]));
+					b = _db.matches.FirstOrDefault(m => m.Match_id == int.Parse(data[0]));
+					break;
+
 			}
 			res = new Tuple<object, int>(b, a);
 			return res; 

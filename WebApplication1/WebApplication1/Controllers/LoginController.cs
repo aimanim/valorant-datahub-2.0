@@ -37,7 +37,8 @@ namespace WebApplication1.Controllers
             {
                 Console.WriteLine("SUCCESS NOT");
                 ViewBag.ErrorMessage = "Invalid username or password";
-                return BadRequest(new { ErrorMessage = "Invalid username or password" });
+                return BadRequest("The username or password that you entered is incorrect. To make sure that your password is correct, please click on the little eye icon" +
+                    " to view the password you have entered. If you don't have a registered account, click on the 'Register Here' link!");
             }
         }
 
@@ -53,7 +54,6 @@ namespace WebApplication1.Controllers
                 {
                     return true;
                 }
-                
             }
             return false;
         }

@@ -12,8 +12,9 @@ namespace WebApplication1.Controllers
         }
         public IActionResult Index()
         {
-            var objMatches = _db.solomatches.ToList();
-            return View(objMatches);
+            var hehe = _db.users.ToList();
+            TempData["Users"] = $"{hehe.Count}";
+            return View();
         }
     }
 }

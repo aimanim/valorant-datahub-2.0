@@ -4,36 +4,36 @@
 	void PrintTable(List<string> headers, string toDisplay)
 	{
 		Type TableType = Type.GetType("WebApplication1.Models." + toDisplay);
-						<thead>
-						<tr>
-						@{
+													<thead>
+													<tr>
+													@{
 			foreach (var property in headers)
 			{
-												<th>@property</th>
+																										<th>@property</th>
 			}
-						}
-						</tr>
-						</thead>
-						<tbody>
-						@{
+													}
+													</tr>
+													</thead>
+													<tbody>
+													@{
 			int i = 0;
-						}
-						@foreach (var record in Model.GetType().GetProperty(toDisplay).GetValue(Model) as IEnumerable<dynamic>)
+													}
+													@foreach (var record in Model.GetType().GetProperty(toDisplay).GetValue(Model) as IEnumerable<dynamic>)
 		{
-							<tr>
-							<td>@(++i)</td>
-							@{
+														<tr>
+														<td>@(++i)</td>
+														@{
 				foreach (var property in TableType.GetProperties())
 				{
 					if (!property.GetGetMethod().IsVirtual)
 					{
-														<td>@property.GetValue(record)</td>
+																												<td>@property.GetValue(record)</td>
 					}
 				}
-							}
-							</tr>
+														}
+														</tr>
 		}
-						</tbody>
+													</tbody>
 	}
 }
 <!DOCTYPE html>
@@ -68,8 +68,6 @@
 		<table class="custom-table" id="custom-table">
 			@{
 				List<string> headers = new List<string>();
-
-
 				int i = 0;
 				switch (toDisplay)
 				{
@@ -135,6 +133,23 @@
 						headers.Add("Location ID");
 						headers.Add("Description");
 						break;
+					case "Teams":
+						headers.Add("Serial No");
+						headers.Add("Team ID");
+						headers.Add("Team Name");
+						headers.Add("Matches Won");
+						headers.Add("Matches Played");
+						headers.Add("Tournaments Won");
+						headers.Add("Tournamets Played");
+						break;
+					case "Matches":
+						headers.Add("Serial No");
+						headers.Add("Match ID");
+						headers.Add("Team 1 Id");
+						headers.Add("Team 2 Id");
+						headers.Add("Winner team");
+						headers.Add("Map");
+						break;
 				}
 				PrintTable(headers, toDisplay);
 
@@ -148,10 +163,10 @@
 					
 					string tb_name = "tb" + i;
 					string property = headers[i];
-									<div class="item">
-										<label for=@tb_name>@property: </label>
-										<input type="text" id=@tb_name />
-									</div>
+																<div class="item">
+																	<label for=@tb_name>@property: </label>
+																	<input type="text" id=@tb_name />
+																</div>
 				}
 			}
 		</div>
@@ -168,33 +183,38 @@
 <script>
 	var btn_last;
 	function DeleteRecord(){
+		if ('@Model.optionClicked' === 'Matches' || '@Model.optionClicked' === 'solo_Matches') { 
+				alert("Update or delete operations are not allowed on this table directly as it has dependencies with the player table.");
+		}
+				else
+	{
 		btn_last = "delete";
-			var data = [];
-			var i = 1;
-			var tb_name;
-			var tb_value;
-			while (true) {
-				tb_name = "tb" + i;
-				var tb = document.getElementById(tb_name);
-				if (tb) {
-					tb_value = tb.value;
-					data.push(tb_value);
-					i++;
-				} else {
-					break;
-				}
+		var data = [];
+		var i = 1;
+		var tb_name;
+		var tb_value;
+		while (true) {
+			tb_name = "tb" + i;
+			var tb = document.getElementById(tb_name);
+			if (tb) {
+				tb_value = tb.value;
+				data.push(tb_value);
+				i++;
+			} else {
+				break;
 			}
+		}
 		var pk = data[0];
 		var tempVar = "@Model.optionClicked";
 		event.preventDefault();
 		$.ajax({
-				url: '/AdminData/Delete',
+			url: '/AdminData/Delete',
 			type: 'POST',
 			data: { pk, tempVar },
 			success: function (response) {
 				alert(response);
-					var tbody = document.querySelector('#custom-table tbody');
-					var rows = tbody.querySelectorAll('tr');
+				var tbody = document.querySelector('#custom-table tbody');
+				var rows = tbody.querySelectorAll('tr');
 				for (var i = 0; i < rows.length; i++) {
 					var cell = rows[i].cells[1]; // Assuming the second column (index 1) contains the unique value
 					if (cell.textContent.trim() === data[0]) {
@@ -209,101 +229,113 @@
 			}
 		});
 	}
+	}
 	function UpdateRecord() {
-		btn_last = "update";
-			var data = [];
-			var i = 1;
-			var tb_name;
-			var tb_value;
-			while (true) {
-				tb_name = "tb" + i;
-				var tb = document.getElementById(tb_name);
-				if (tb) {
-					tb_value = tb.value;
-					data.push(tb_value);
-					i++;
-				} else {
-					break;
+		if ('@Model.optionClicked' === 'Matches' || '@Model.optionClicked' === 'solo_Matches') { 
+				alert("Update or delete operations are not allowed on this table directly as it has dependencies with the player table.");
+		}
+		else
+		{
+			btn_last = "update";
+				var data = [];
+				var i = 1;
+				var tb_name;
+				var tb_value;
+				while (true) {
+					tb_name = "tb" + i;
+					var tb = document.getElementById(tb_name);
+					if (tb) {
+						tb_value = tb.value;
+						data.push(tb_value);
+						i++;
+					} else {
+						break;
+					}
 				}
-			}
-		var tempVar = "@Model.optionClicked";
-		event.preventDefault();
-			$.ajax({
-				url: '/AdminData/Update',
-				type: 'POST',
-				data: { data, tempVar },
-				success: function (response) {
-					alert(response);
-					var tbody = document.querySelector('#custom-table tbody');
-					var rows = tbody.querySelectorAll('tr');
-					var rowCount = rows.length;
-					var newRow = document.createElement('tr');
-					var index = document.createElement('td');
-					index.textContent = rowCount + 1;
-					newRow.appendChild(index);
-					// Create a new row for each item in the received data
-					data.forEach(function (item) {
-						var cell = document.createElement('td');
-						cell.textContent = item;
-						newRow.appendChild(cell);
+			var tempVar = "@Model.optionClicked";
+			event.preventDefault();
+				$.ajax({
+					url: '/AdminData/Update',
+					type: 'POST',
+					data: { data, tempVar },
+					success: function (response) {
+						alert(response);
+						var tbody = document.querySelector('#custom-table tbody');
+						var rows = tbody.querySelectorAll('tr');
+						var rowCount = rows.length;
+						var newRow = document.createElement('tr');
+						var index = document.createElement('td');
+						index.textContent = rowCount + 1;
+						newRow.appendChild(index);
+						// Create a new row for each item in the received data
+						data.forEach(function (item) {
+							var cell = document.createElement('td');
+							cell.textContent = item;
+							newRow.appendChild(cell);
 						
-					});
-					tbody.appendChild(newRow);
-				},
-				error: function (xhr, status, error) {
-					var errorMessage = xhr.responseText;
-					alert(errorMessage);
-				}
-			});
+						});
+						tbody.appendChild(newRow);
+					},
+					error: function (xhr, status, error) {
+						var errorMessage = xhr.responseText;
+						alert(errorMessage);
+					}
+				});
+		}
 	}
 	function InsertRecord(){
-			btn_last = "insert";
-			var data = [];
-			var i = 1;
-			var tb_name;
-			var tb_value;
-			while (true) {
-				tb_name = "tb" + i;
-				var tb = document.getElementById(tb_name);
-				if (tb) {
-					tb_value = tb.value;
-					data.push(tb_value);
-					i++;
-				} else {
-					break;
+		if ('@Model.optionClicked' === 'Player') { 
+			alert("Please add player using the sign up form on home page");
+		}
+		else {
+				btn_last = "insert";
+				var data = [];
+				var i = 1;
+				var tb_name;
+				var tb_value;
+				while (true) {
+					tb_name = "tb" + i;
+					var tb = document.getElementById(tb_name);
+					if (tb) {
+						tb_value = tb.value;
+						data.push(tb_value);
+						i++;
+					} else {
+						break;
+					}
 				}
-			}
-		console.log(data);
-		var tempVar = "@Model.optionClicked";
-			event.preventDefault();
-			$.ajax({
-				url: '/AdminData/Insert',
-				type: 'POST',
-				data: { data, tempVar },
-				success: function (response) {
-					alert("Click on the save changes button to save your changes");
-					var tbody = document.querySelector('#custom-table tbody');
-					var rows = tbody.querySelectorAll('tr');
-					var rowCount = rows.length;
-					var newRow = document.createElement('tr');
-					var index = document.createElement('td');
-					index.textContent = rowCount + 1;
-					newRow.appendChild(index);
-					// Create a new row for each item in the received data
-					data.forEach(function (item) {
-						
-						var cell = document.createElement('td');
-						cell.textContent = item;
-						newRow.appendChild(cell);
-						
-					});
-					tbody.appendChild(newRow);
-				},
-				error: function (xhr, status, error) {
-					var errorMessage = xhr.responseText;
-					alert(errorMessage);
-				}
-			});
+				console.log(data);
+				var tempVar = "@Model.optionClicked";
+				event.preventDefault();
+				$.ajax({
+					url: '/AdminData/Insert',
+					type: 'POST',
+					data: { data, tempVar },
+					success: function (response) {
+						alert("Click on the save changes button to save your changes");
+						var tbody = document.querySelector('#custom-table tbody');
+						var rows = tbody.querySelectorAll('tr');
+						var rowCount = rows.length;
+						var newRow = document.createElement('tr');
+						var index = document.createElement('td');
+						index.textContent = rowCount + 1;
+						newRow.appendChild(index);
+						// Create a new row for each item in the received data
+						data.forEach(function (item) {
+
+							var cell = document.createElement('td');
+							cell.textContent = item;
+							newRow.appendChild(cell);
+
+						});
+						tbody.appendChild(newRow);
+					},
+					error: function (xhr, status, error) {
+						var errorMessage = xhr.responseText;
+						alert(errorMessage);
+					}
+				});
+		}
 	}
 	function Commit(){
 			var tbody = document.querySelector('#custom-table tbody');

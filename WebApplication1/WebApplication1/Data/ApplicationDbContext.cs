@@ -10,7 +10,8 @@ namespace WebApplication1.Data
         {
 
         }
-
+        public DbSet<Matches> matches { get; set; }
+        public DbSet<Teams> teams { get; set; }
         public DbSet<agents> Agents { get; set; }
         public DbSet<Leaderboards> leaderboards {  get; set; }
         public DbSet<Player> players { get; set; }
@@ -70,7 +71,17 @@ namespace WebApplication1.Data
                 entity.ToTable("users");
                 entity.HasKey(e => e.Username);
             });
-			modelBuilder.Entity<SomeModel>().HasNoKey();
+            modelBuilder.Entity<Teams>(entity =>
+            {
+                entity.ToTable("Teams");
+                entity.HasKey(e => e.Team_id);
+            });
+            modelBuilder.Entity<Matches>(entity =>
+            {
+                entity.ToTable("Matches");
+                entity.HasKey(e => e.Match_id);
+            });
+            modelBuilder.Entity<SomeModel>().HasNoKey();
 			modelBuilder.Entity<GenericModel>().HasNoKey();
 			modelBuilder.Entity<AgentAbilities>().HasNoKey();
 			modelBuilder.Entity<Agent_And_Abilities>().HasNoKey();

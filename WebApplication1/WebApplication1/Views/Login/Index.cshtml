@@ -35,7 +35,7 @@
                 <button id='submitButton'>Login</button>
             </div>
             <div class="item">
-                <p>New here? <a href="#">Register Here!</a></p>
+                <p>New here? <a href="/Signup/Index">Register Here!</a></p>
             </div>
         </div>
 
@@ -81,9 +81,8 @@
                             window.location.href = "/Homepage/Index?username=" + username;
                     },
                     error: function (xhr, status, error) {
-                        console.log(xhr);
-                        console.log(status);
-                        console.log(error);
+                        var errorMessage = xhr.responseText;
+                        alert(errorMessage);
                     }
                 });
             });

@@ -1,4 +1,4 @@
-﻿@model List<solo_Matches>
+﻿
 @{
     Layout = null;
 }
@@ -72,12 +72,18 @@
             <h1>Insights</h1>
             <div id="app">
                 <progress-ring :radius="100" :progress="progress" :stroke="5"></progress-ring>
-                <h3>Registered users</h3>
+                
             </div>
-
+            <h3>Registered users</h3>
             <template id="progress-ring-template">
                 <svg :height="radius * 2" :width="radius * 2">
-                    <circle stroke="red"
+                    <defs>
+                        <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="rgba(213,160,35,1)" />
+                            <stop offset="100%" stop-color="rgba(222,72,18,1)" />
+                        </linearGradient>
+                    </defs>
+                    <circle stroke="url(#progressGradient)"
                             fill="transparent"
                             :stroke-dasharray="circumference + ' ' + circumference"
                             :style="{ strokeDashoffset, transition: 'stroke-dashoffset 1s ease-in-out' }"
@@ -86,13 +92,14 @@
                             :cx="radius"
                             :cy="radius" />
                     <text x="100" y="110" text-anchor="middle"
-                          font-size="50" fill="red">{{i}}</text>
+                          font-size="50" fill="rgba(222,72,18,1)">{{i}}</text>
                 </svg>
             </template>
             <canvas id="barChart" width="500" height="500"></canvas>
         </div>
     </div>
     <script>
+        var users = @TempData["Users"];
         Vue.component('progress-ring', {
             props: ['radius', 'progress', 'stroke'],
             template: '#progress-ring-template',
@@ -107,7 +114,7 @@
             },
             computed: {
                 i: function () {
-                    let result = 31 * (this.progress / 100);
+                    let result = users * (this.progress / 100);
                     result = Math.round(result);
                     return result;
                 },
