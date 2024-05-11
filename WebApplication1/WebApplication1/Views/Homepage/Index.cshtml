@@ -37,7 +37,11 @@
         <button class="maps" onclick="OpenMaps()">View Maps</button>
         <button class="weapons">View Weapons</button>
         <button class="leaderboards" onclick="OpenLeaderboards()">View Leaderboards</button>
+        @if (Model.Username != "Guest Mode")
+        {
         <button class="stats" onclick="OpenStats()">View Stats</button>
+        <button class="pwUpdate" onclick="UpdatePassword()">Update Password</button>
+        }
     </div>
     <script>
         $(document).ready(function () {
@@ -66,7 +70,10 @@
         function OpenStats() {
             if ('@Model.Username' != "Guest Mode")
                window.location.href = "/Stats/Index?username=@Model.Username";
-            
+        }
+        function UpdatePassword() { 
+            if ('@Model.Username' != "Guest Mode")
+                window.location.href = "/Updatepassword/Index?username=@Model.Username";
         }
     </script>
 

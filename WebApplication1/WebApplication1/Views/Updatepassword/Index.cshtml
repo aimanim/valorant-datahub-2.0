@@ -1,0 +1,231 @@
+﻿@{
+    Layout = null;
+}
+@model User
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/countries-list@2.11.0/dist/countries.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Sign up </title>
+    <style>
+        html {
+            background: black;
+        }
+
+        .body-content {
+            padding-top: 0;
+        }
+
+        .container {
+            width: 350px;
+            height: 550px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            border: 2px solid rgba(255, 255, 255, 0.049);
+            border-radius: 15px;
+            background: #990000;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        .form-item input {
+            width: 150px;
+            height: 30px;
+            border: 2px solid #e1dede69;
+            border-radius: 5px;
+            background: white;
+            color: black;
+            text-align: left;
+            margin: 0 5px;
+        }
+
+        h2 {
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .form-item-password {
+            margin: 5px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-item-password input {
+                width: 320px;
+                height: 30px;
+                border: 2px solid #e1dede69;
+                border-radius: 5px;
+                background: white;
+                color: black;
+                text-align: left;
+                margin: 5px 5px;
+            }
+        #pw_iconn {
+            position: absolute;
+            float: right;
+            margin-left: 300px;
+            margin-top: 58px;
+            font-size: 20px;
+            color: black;
+        }
+
+        #pw_iconn1 {
+            position: absolute;
+            float: right;
+            margin-left: 300px;
+            margin-top: 104px;
+            font-size: 20px;
+            color: black;
+        }
+
+        #pw_iconn2 {
+            position: absolute;
+            float: right;
+            margin-left: 300px;
+            margin-top: 15px;
+            font-size: 20px;
+            color: black;
+        }
+        i {
+            font-size: 8px;
+        }
+
+        .form-btns {
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            padding: 10px 0;
+        }
+
+            .form-btns button {
+                margin: auto;
+                font-size: 20px;
+                padding: 5px 15px;
+                border: 0;
+                border-radius: 15px;
+                color: white;
+                background: black;
+                width: 280px;
+                cursor: pointer;
+            }
+
+
+                .form-btns button:hover {
+                    background: #474545;
+                    color: antiquewhite;
+                }
+    </style>
+</head>
+
+<body>
+    @Html.Partial("/Views/Homepage_Nav/Index.cshtml")
+    <div class="container">
+        <h2>Update your password</h2>
+        <div class="login-form">
+            
+            <div class="form-item-password">
+                <input type="password" class="required-input" id="passwordInput2" placeholder="Old password">
+                <i class='bx bx-hide' id="pw_iconn2" onclick="update_icon3()" style="cursor: pointer;"></i>
+                <input type="password" class="required-input" id="passwordInput" placeholder="New Password">
+                <i class='bx bx-hide' id="pw_iconn" onclick="update_icon()" style="cursor: pointer;"></i>
+                <input type="password" class="required-input" id="passwordInput1" placeholder="Confirm Password">
+                <i class='bx bx-hide' id="pw_iconn1" onclick="update_icon2()" style="cursor: pointer;"></i>
+            </div>
+            <div class="form-btns">
+                <button class="signup" onclick="Verify()">Update</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var a = 0;
+        function update_icon() {
+            console.log(a);
+            var hehe = document.getElementById('pw_iconn');
+            if (a == 1) {
+                document.getElementById('passwordInput').type = 'password';
+                hehe.classList.remove('bx-show');
+                hehe.classList.add('bx-hide');
+                a = 0;
+            }
+            else {
+                a = 1;
+                document.getElementById('passwordInput').type = 'text';
+                hehe.classList.remove('bx-hide');
+                hehe.classList.add('bx-show');
+            }
+        }
+        var b = 0;
+        function update_icon2() {
+            var hehe = document.getElementById('pw_iconn1');
+            if (b == 1) {
+                document.getElementById('passwordInput1').type = 'password';
+                hehe.classList.remove('bx-show');
+                hehe.classList.add('bx-hide');
+                b = 0;
+            }
+            else {
+                b = 1;
+                document.getElementById('passwordInput1').type = 'text';
+                hehe.classList.remove('bx-hide');
+                hehe.classList.add('bx-show');
+            }
+        }
+        var c = 0;
+        function update_icon3() {
+            var hehe = document.getElementById('pw_iconn2');
+            if (c == 1) {
+                document.getElementById('passwordInput2').type = 'password';
+                hehe.classList.remove('bx-show');
+                hehe.classList.add('bx-hide');
+                c = 0;
+            }
+            else {
+                c = 1;
+                document.getElementById('passwordInput2').type = 'text';
+                hehe.classList.remove('bx-hide');
+                hehe.classList.add('bx-show');
+            }
+        }
+        function addAsteriskToPlaceholders() {
+            var requiredInputs = document.querySelectorAll('.required-input');
+
+            requiredInputs.forEach(function (input) {
+                var placeholder = input.getAttribute('placeholder');
+                input.setAttribute('placeholder', placeholder + '*');
+            });
+        }
+        function Verify(){
+            var oldPassword = document.getElementById("passwordInput2").value;
+            var newPassword = document.getElementById("passwordInput").value;
+            var confirmPassword = document.getElementById("passwordInput1").value;
+            var Username = '@Model.Username';
+            event.preventDefault();
+            console.log("Gonna send the query");
+            $.ajax({
+                url: '/Updatepassword/Verify',
+                type: 'POST',
+                data: {oldPassword,newPassword,confirmPassword,Username},
+                success: function (response) {
+                    alert(response)
+                    window.location.href = "/Homepage/Index?" + Username;
+                },
+                error: function (xhr, status, error) {
+                    var errorMessage = xhr.responseText;
+                    alert(errorMessage);
+                }
+            });
+
+        }
+    </script>
+</body>
+
+</html>
